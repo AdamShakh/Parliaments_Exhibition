@@ -103,9 +103,29 @@ export default {
           to: '/'
         },
         {
+          icon: 'mdi-apps',
+          title: 'Index',
+          to: '/0_index'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Russia',
+          to: '/Russia'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Germany',
+          to: '/Germany'
+        },
+        {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Tutor',
+          to: '/tutorial'
         }
       ],
       miniVariant: false,
