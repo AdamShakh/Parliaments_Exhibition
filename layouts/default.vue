@@ -1,33 +1,61 @@
 <template>
-  <v-app dark>
+  <v-app light>
     <v-navigation-drawer
       v-model="drawer"
-      :mini-variant="miniVariant"
+      :mini-variant="true"
+      mini-variant-width="5em"
       :clipped="clipped"
+      expand-on-hover
       fixed
       app
+      light
     >
       <v-list>
+        <!-- <v-list-item-avatar>
+          <v-img src="/Russia/0_Face.jpg"></v-img>
+        </v-list-item-avatar> -->
+        <!-- <v-list-item-action>
+          <v-icon>{{ page.icon }}</v-icon>
+        </v-list-item-action> -->
+
         <v-list-item
-          v-for="(item, i) in items"
+          class="menu-item"
+          v-for="(page, i) in pages"
           :key="i"
-          :to="item.to"
+          :to="page.to"
           router
           exact
         >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
+            <v-list-item-avatar width="4em" height="4em">
+              <v-img :src="page.icon"></v-img>
+            </v-list-item-avatar>
+            
+            <v-list-item-content>
+              <v-list-item-title v-text="page.title" />
+            </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
+
+    <v-container class="fill-height" dark>
+      <v-row
+        align="center"
+        justify="left"
+      >
+        <v-btn
+          dark
+          @click.stop="drawer = !drawer"
+        >
+          <v-icon>mdi-apps</v-icon>
+        </v-btn>
+      </v-row>
+    </v-container>
+
+    <!-- <v-app-bar
       :clipped-left="clipped"
       fixed
       app
+      light
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn
@@ -36,55 +64,22 @@
       >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-main>
-      <v-container>
+    </v-app-bar> -->
+
+    <v-main light>
+      <v-container light>
         <Nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
+
+    <!-- <v-footer
       :absolute="!fixed"
       app
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 
@@ -93,46 +88,50 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
+      drawer: true,
+      pages: [
         {
           icon: 'mdi-apps',
           title: 'Welcome',
           to: '/'
         },
         {
-          icon: 'mdi-apps',
-          title: 'Index',
+          icon: '/home.png',
+          title: 'Parler Square',
           to: '/0_index'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: '/Russia/0_Face.jpg',
           title: 'Russia',
-          to: '/Russia'
+          to: '/Russia',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: '/Germany/0_Face.jpg',
           title: 'Germany',
           to: '/Germany'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: '/Russia/2.jpg',
           title: 'Inspire',
           to: '/inspire'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: '/Germany/1.jpg',
           title: 'Tutor',
           to: '/tutorial'
         }
       ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
+      clipped: true,
+      fixed: false,
       title: 'Vuetify.js'
     }
   }
 }
 </script>
+
+<style>
+.menu-item {
+    padding-right: 2px !important;
+    padding-left: 2px !important;
+}
+</style>
