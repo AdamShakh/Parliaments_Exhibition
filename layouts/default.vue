@@ -37,7 +37,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-container class="fill-height" dark>
+    <v-container class="fill-height" fixed dark>
       <v-row
         align="center"
         justify="left"
@@ -86,19 +86,19 @@
 <script>
 export default {
   name: 'DefaultLayout',
-  data () {
+  data() {
     return {
       drawer: true,
       pages: [
         {
           icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/'
+          to: '/Welcome'
         },
         {
           icon: '/home.png',
           title: 'Parler Square',
-          to: '/0_index'
+          to: '/'
         },
         {
           icon: '/Russia/0_Face.jpg',
@@ -123,8 +123,10 @@ export default {
       ],
       clipped: true,
       fixed: false,
-      title: 'Vuetify.js'
     }
+  },
+  mounted(){
+    this.$store.commit("setPages", this.pages)
   }
 }
 </script>
