@@ -1,21 +1,35 @@
 <template>
-  <v-app>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
+  <v-app light>
+    <v-main light>
+      <v-row justify="center" align="left">
+        <v-col cols="12" sm="8" md="6">
+          <v-card>
+            <v-card-title v-if="error.statusCode === 404">
+                {{ pageNotFound }}
+            </v-card-title>
+            <v-card-title v-else>
+                {{ otherError }}
+            </v-card-title>
+            <v-card-actions>
+              <v-btn
+                color="primary"
+                nuxt
+                to="/"
+              >
+                Back to Parler Square
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-main>
   </v-app>
 </template>
 
 <script>
 export default {
   name: 'EmptyLayout',
-  layout: 'empty',
+  //layout: 'empty',
   props: {
     error: {
       type: Object,

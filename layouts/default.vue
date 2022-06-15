@@ -37,13 +37,12 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-container class="fill-height" fixed dark>
+    <v-container class="fill-height" fixed>
       <v-row
         align="center"
         justify="left"
       >
         <v-btn
-          dark
           @click.stop="drawer = !drawer"
         >
           <v-icon>mdi-apps</v-icon>
@@ -91,7 +90,7 @@ export default {
       drawer: true,
       pages: [
         {
-          icon: 'mdi-apps',
+          icon: 'v.png',
           title: 'Welcome',
           to: '/Welcome'
         },
@@ -103,16 +102,19 @@ export default {
         {
           icon: '/Russia/0_Face.jpg',
           title: 'Russia',
+          name: 'State Duma & Council of Federation - Federal Assembly',
           to: '/Russia',
         },
         {
           icon: '/Germany/0_Face.jpg',
           title: 'Germany',
+          name: 'Bundestag',
           to: '/Germany'
         },
         {
           icon: '/Russia/2.jpg',
           title: 'Inspire',
+          name: 'Inpire BS',
           to: '/inspire'
         },
         {
