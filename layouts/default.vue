@@ -37,13 +37,16 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-container class="fill-height" fixed>
+    <v-container class="fill-height">
       <v-row
         align="center"
         justify="left"
       >
         <v-btn
           @click.stop="drawer = !drawer"
+          fab
+          small
+          icon
         >
           <v-icon>mdi-apps</v-icon>
         </v-btn>

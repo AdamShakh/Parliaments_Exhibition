@@ -2,7 +2,7 @@
 <div>
     <v-card light>
         <v-card-title class="headline" >
-          Welcome to Parler Square
+            Welcome to Parler Square
         </v-card-title>
         <v-card-text class="headline" justify="center" align="center">
             Here you can see the Most Beautiful Parliamentary buildings in the World
@@ -17,7 +17,8 @@
                 v-for="(page, i) in pages"
                 :key="i"
             >
-                <v-card light
+                <v-card 
+                    light
                     :to="page.to"
                     router
                     hover="true"

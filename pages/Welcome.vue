@@ -78,6 +78,6 @@
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'Welcome'
 }
 </script>
