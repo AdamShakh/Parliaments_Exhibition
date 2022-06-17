@@ -103,7 +103,7 @@ export default {
           to: '/'
         },
         {
-          icon: '/Russia/0_Face.jpg',
+          icon: '/Russia/0_Face_min.jpg',
           title: 'Russia',
           name: 'State Duma & Council of Federation - Federal Assembly',
           to: '/Russia',
@@ -131,7 +131,8 @@ export default {
     }
   },
   mounted(){
-    this.$store.commit("setPages", this.pages)
+    this.$store.commit("setPages", this.pages);
+    this.$vuetify.theme.light;
   }
 }
 </script>
