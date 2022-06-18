@@ -11,9 +11,6 @@
       light
     >
       <v-list>
-        <!-- <v-list-item-avatar>
-          <v-img src="/Russia/0_Face.jpg"></v-img>
-        </v-list-item-avatar> -->
         <!-- <v-list-item-action>
           <v-icon>{{ page.icon }}</v-icon>
         </v-list-item-action> -->
@@ -76,12 +73,39 @@
       </v-container>
     </v-main>
 
-    <!-- <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer> -->
+    <v-container>
+      <v-row justify="center" align="center">
+        <v-col cols="4" justify="center" align="center">
+          <v-card>
+            <v-footer
+              absolute
+              app
+              :padless="false"
+            >
+              <v-card>
+                <v-card-text>
+                  <v-btn
+                    v-for="icon in icons"
+                    :key="icon"
+                    class="mx-4"
+                    icon
+                  >
+                    <v-icon size="24px">
+                      {{ icon }}
+                    </v-icon>
+                  </v-btn>
+                </v-card-text>
+                <v-divider></v-divider>
+                <v-card-text class="white--text">
+                  {{ new Date().getFullYear() }} — <strong>Adam Shakhbanov</strong>
+                </v-card-text>
+              </v-card>
+            </v-footer>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+    
   </v-app>
 </template>
 
@@ -93,11 +117,6 @@ export default {
       drawer: true,
       pages: [
         {
-          icon: 'v.png',
-          title: 'Welcome',
-          to: '/Welcome'
-        },
-        {
           icon: '/home.png',
           title: 'Parler Square',
           to: '/'
@@ -105,26 +124,33 @@ export default {
         {
           icon: '/Russia/0_Face_min.jpg',
           title: 'Russia',
-          name: 'State Duma & Council of Federation - Federal Assembly',
+          name: 'State Duma & Federation Council - Federal Assembly',
           to: '/Russia',
         },
         {
-          icon: '/Germany/0_Face.jpg',
+          icon: '/Germany/0_Face_icon.jpg',
           title: 'Germany',
           name: 'Bundestag',
           to: '/Germany'
         },
         {
-          icon: '/Russia/2.jpg',
-          title: 'Inspire',
-          name: 'Inpire BS',
-          to: '/inspire'
+          icon: '/UK/0_Face_min.jpg',
+          title: 'United Kingdom',
+          name: 'House of Commons & House of Lords',
+          to: '/UK'
         },
         {
           icon: '/Germany/1.jpg',
-          title: 'Tutor',
-          to: '/tutorial'
+          title: 'Hungary',
+          name: "",
+          to: '/Hungary'
         }
+      ],
+      icons: [
+        'mdi-home',
+        'mdi-email',
+        'mdi-calendar',
+        'mdi-delete',
       ],
       clipped: true,
       fixed: false,
