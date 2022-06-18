@@ -123,26 +123,30 @@ export default {
         },
         {
           icon: '/Russia/0_Face_min.jpg',
+          face: '/Russia/0_Face.jpg',
           title: 'Russia',
           name: 'State Duma & Federation Council - Federal Assembly',
           to: '/Russia',
         },
         {
           icon: '/Germany/0_Face_icon.jpg',
+          face: '/Germany/0_Face.jpg',
           title: 'Germany',
           name: 'Bundestag',
           to: '/Germany'
         },
         {
-          icon: '/UK/0_Face_min.jpg',
+          icon: '/UK/0_Face_icon.jpg',
+          face: '/UK/0_Face.jpg',
           title: 'United Kingdom',
           name: 'House of Commons & House of Lords',
           to: '/UK'
         },
         {
           icon: '/Germany/1.jpg',
+          face: '',
           title: 'Hungary',
-          name: "",
+          name: '',
           to: '/Hungary'
         }
       ],
