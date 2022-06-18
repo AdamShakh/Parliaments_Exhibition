@@ -23,7 +23,7 @@
                     router
                     hover="true"
                 >
-                    <v-img :src="page.icon" height="14em"></v-img>
+                    <v-img :src="page.face" height="14em"></v-img>
                     <v-card-title class="headline">
                         {{ page.title }}
                     </v-card-title>
@@ -41,7 +41,7 @@
 export default {
     computed: {
         pages(){
-            return this.$store.getters["getPages"].slice(2); 
+            return this.$store.getters["getPages"].slice(1); 
         }
     },
     layout: 'index',

@@ -9,9 +9,9 @@
 
       <template  v-slot:Left>
           <p>
-            Nowadays Parliament of Germany - Bundestag - placed occupying several building in "Administrative district".
+            Nowadays Parliament of Germany - Bundestag - occupying several building in "Administrative district".
             Among these buildings: 
-            Reichstag-building, the Jakob-Kaiser-Haus, Paul-Löbe-Haus and Marie-Elisabeth-Lüders-Haus.
+            <b>Reichstag-building, the Jakob-Kaiser-Haus, Paul-Löbe-Haus and Marie-Elisabeth-Lüders-Haus.</b> 
             Last two buildings with the Federal Chancellery are part of so called "Federal Ribbon".
           </p>
           <p>
