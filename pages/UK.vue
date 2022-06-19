@@ -49,7 +49,7 @@ export default{
     return{
       imgNum: 17,
       country: "UK",
-      title: "United Kingdom"
+      title: "UK Parliament"
     }
   }
 }

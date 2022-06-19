@@ -1,5 +1,5 @@
 <template>
-  <v-app light>
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="true"
@@ -125,7 +125,7 @@ export default {
           icon: '/Russia/0_Face_min.jpg',
           face: '/Russia/0_Face.jpg',
           title: 'Russia',
-          name: 'State Duma & Federation Council - Federal Assembly',
+          name: 'State Duma & Federation Council',
           to: '/Russia',
         },
         {
@@ -143,10 +143,10 @@ export default {
           to: '/UK'
         },
         {
-          icon: '/Germany/1.jpg',
-          face: '',
+          icon: '/Hungary/0_Face_icon.jpg',
+          face: '/Hungary/0_Face.jpg',
           title: 'Hungary',
-          name: '',
+          name: 'National Assembly',
           to: '/Hungary'
         }
       ],
