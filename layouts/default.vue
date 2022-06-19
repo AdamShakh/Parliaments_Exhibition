@@ -9,6 +9,7 @@
       fixed
       app
       light
+      max-height="100%"
     >
       <v-list>
         <!-- <v-list-item-action>
@@ -75,32 +76,26 @@
 
     <v-container>
       <v-row justify="center" align="center">
-        <v-col cols="4" justify="center" align="center">
-          <v-card>
-            <v-footer
-              absolute
-              app
-              :padless="false"
-            >
-              <v-card>
-                <v-card-text>
-                  <v-btn
-                    v-for="icon in icons"
-                    :key="icon"
-                    class="mx-4"
-                    icon
-                  >
-                    <v-icon size="24px">
-                      {{ icon }}
-                    </v-icon>
-                  </v-btn>
-                </v-card-text>
-                <v-divider></v-divider>
-                <v-card-text class="white--text">
-                  {{ new Date().getFullYear() }} — <strong>Adam Shakhbanov</strong>
-                </v-card-text>
-              </v-card>
-            </v-footer>
+        <v-col cols="5" justify="center" align="center">
+          <v-card class="teal">
+              <v-card-text>
+                <v-btn
+                  v-for="icon in footer_icons"
+                  :key="icon"
+                  class="mx-4"
+                  icon
+                  router
+                  :href="icon.href"
+                >
+                  <v-icon size="24px">
+                    {{ icon.icon }}
+                  </v-icon>
+                </v-btn>
+              </v-card-text>
+              <v-divider></v-divider>
+              <v-card-text class="white--text">
+                {{ new Date().getFullYear() }} — <strong>Adam Shakhbanov</strong>
+              </v-card-text>
           </v-card>
         </v-col>
       </v-row>
@@ -115,11 +110,12 @@ export default {
     data() {
         return {
             drawer: true,
-            icons: [
-              'mdi-home',
-              'mdi-email',
-              'mdi-calendar',
-              'mdi-delete',
+            footer_icons: [
+              {icon: 'mdi-home', href: "/"},
+              {icon: 'mdi-github', href: "https://github.com/AdamShakh/Parliaments_Exhibition"},
+              {icon: 'mdi-vuetify', href: "https://vuetifyjs.com/"},
+              {icon: 'mdi-nuxt', href: "https://nuxtjs.org/"},
+              {icon: 'mdi-vuejs', href: "https://vuejs.org/"},
             ],
             clipped: true,
             fixed: false,
@@ -130,10 +126,10 @@ export default {
             return this.$store.getters["getPages"]; 
         }
     },
-    mounted(){
+    // mounted(){
       // this.$store.commit("setPages", this.pages);
       // this.$vuetify.theme.light;
-    }
+    // }
 }
 </script>
 
