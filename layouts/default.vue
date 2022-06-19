@@ -111,59 +111,29 @@
 
 <script>
 export default {
-  name: 'DefaultLayout',
-  data() {
-    return {
-      drawer: true,
-      pages: [
-        {
-          icon: '/home.png',
-          title: 'Parler Square',
-          to: '/'
-        },
-        {
-          icon: '/Russia/0_Face_min.jpg',
-          face: '/Russia/0_Face.jpg',
-          title: 'Russia',
-          name: 'State Duma & Federation Council',
-          to: '/Russia',
-        },
-        {
-          icon: '/Germany/0_Face_icon.jpg',
-          face: '/Germany/0_Face.jpg',
-          title: 'Germany',
-          name: 'Bundestag',
-          to: '/Germany'
-        },
-        {
-          icon: '/UK/0_Face_icon.jpg',
-          face: '/UK/0_Face.jpg',
-          title: 'United Kingdom',
-          name: 'House of Commons & House of Lords',
-          to: '/UK'
-        },
-        {
-          icon: '/Hungary/0_Face_icon.jpg',
-          face: '/Hungary/0_Face.jpg',
-          title: 'Hungary',
-          name: 'National Assembly',
-          to: '/Hungary'
+    name: 'DefaultLayout',
+    data() {
+        return {
+            drawer: true,
+            icons: [
+              'mdi-home',
+              'mdi-email',
+              'mdi-calendar',
+              'mdi-delete',
+            ],
+            clipped: true,
+            fixed: false,
         }
-      ],
-      icons: [
-        'mdi-home',
-        'mdi-email',
-        'mdi-calendar',
-        'mdi-delete',
-      ],
-      clipped: true,
-      fixed: false,
+    },
+    computed: {
+        pages(){
+            return this.$store.getters["getPages"]; 
+        }
+    },
+    mounted(){
+      // this.$store.commit("setPages", this.pages);
+      // this.$vuetify.theme.light;
     }
-  },
-  mounted(){
-    this.$store.commit("setPages", this.pages);
-    this.$vuetify.theme.light;
-  }
 }
 </script>
 
