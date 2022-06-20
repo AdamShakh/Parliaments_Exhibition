@@ -1,5 +1,9 @@
 <template>
   <v-app>
+    
+    <v-img :src="bg_path" style="position: fixed; background-size:cover; width: 100%; height: 100%;">
+    </v-img>
+
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="true"
@@ -9,7 +13,7 @@
       fixed
       app
       light
-      max-height="100%"
+      class="back-lowbright"
     >
       <v-list>
         <!-- <v-list-item-action>
@@ -35,22 +39,6 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-container class="fill-height">
-      <v-row
-        align="center"
-        justify="left"
-      >
-        <v-btn
-          @click.stop="drawer = !drawer"
-          fab
-          small
-          icon
-        >
-          <v-icon>mdi-apps</v-icon>
-        </v-btn>
-      </v-row>
-    </v-container>
-
     <!-- <v-app-bar
       :clipped-left="clipped"
       fixed
@@ -68,38 +56,57 @@
       <v-spacer />
     </v-app-bar> -->
 
-    <v-main light>
+
+
+    <v-main light class="back-lowbright">
+
+      <v-container>
+        <v-row
+          align="center"
+          justify="left"
+        >
+          <v-btn
+            @click.stop="drawer = !drawer"
+            fab
+            small
+            icon
+          >
+            <v-icon>mdi-apps</v-icon>
+          </v-btn>
+        </v-row>
+      </v-container>
+
       <v-container light>
         <Nuxt />
       </v-container>
-    </v-main>
 
-    <v-container>
-      <v-row justify="center" align="center">
-        <v-col cols="5" justify="center" align="center">
-          <v-card class="teal">
-              <v-card-text>
-                <v-btn
-                  v-for="icon in footer_icons"
-                  :key="icon"
-                  class="mx-4"
-                  icon
-                  router
-                  :href="icon.href"
-                >
-                  <v-icon size="24px">
-                    {{ icon.icon }}
-                  </v-icon>
-                </v-btn>
-              </v-card-text>
-              <v-divider></v-divider>
-              <v-card-text class="white--text">
-                {{ new Date().getFullYear() }} — <strong>Adam Shakhbanov</strong>
-              </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+      <v-container style="max-height: '100%'; max-width: 100%">
+        <v-row justify="center" align="center">
+          <v-col cols="5" justify="center" align="center">
+            <v-card class="indigo lighten-2" dark>
+                <v-card-text>
+                  <v-btn
+                    v-for="icon in footer_icons"
+                    :key="icon"
+                    class="mx-4"
+                    icon
+                    :href="icon.href"
+                  >
+                    <v-icon size="24px">
+                      {{ icon.icon }}
+                    </v-icon>
+                  </v-btn>
+                </v-card-text>
+                <v-divider></v-divider>
+                <v-card-text class="white--text">
+                  {{ new Date().getFullYear() }} — <strong>Adam Shakhbanov</strong>
+                </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+      
+    </v-main>
     
   </v-app>
 </template>
@@ -119,6 +126,7 @@ export default {
             ],
             clipped: true,
             fixed: false,
+            bg_path: '',
         }
     },
     computed: {
@@ -126,10 +134,13 @@ export default {
             return this.$store.getters["getPages"]; 
         }
     },
-    // mounted(){
+    mounted(){
       // this.$store.commit("setPages", this.pages);
-      // this.$vuetify.theme.light;
-    // }
+      this.$vuetify.theme.dark = false;
+    },
+    created(){
+      this.$nuxt.$on('bg-path', ($event) => (this.bg_path = $event))
+    },
 }
 </script>
 
@@ -138,4 +149,14 @@ export default {
     padding-right: 2px !important;
     padding-left: 2px !important;
 }
+.back-lowbright{
+    backdrop-filter: brightness(60%) !important;
+}
+/* div[data-app='true']  */ 
+/* .bgflag {
+    background: url(/Russia/Flag.jpg) no-repeat center center fixed !important;
+    background-size:cover; 
+    width: 100%;
+    height: 100%;
+} */
 </style>

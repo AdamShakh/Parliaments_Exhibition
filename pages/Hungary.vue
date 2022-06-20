@@ -37,6 +37,9 @@ export default{
       country: "Hungary",
       title: "National Assembly of Hungary"
     }
+  },
+  created(){
+    $nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg")
   }
 }
 </script>

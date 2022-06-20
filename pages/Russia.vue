@@ -46,6 +46,9 @@ export default{
       country: "Russia",
       title: "State Duma & SovFed of Russia"
     }
+  },
+  created(){
+    $nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg")
   }
 }
 </script>

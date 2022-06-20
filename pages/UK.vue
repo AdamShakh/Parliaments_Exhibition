@@ -51,6 +51,9 @@ export default{
       country: "UK",
       title: "UK Parliament"
     }
+  },
+  created(){
+    $nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg")
   }
 }
 </script>
