@@ -81,29 +81,29 @@
       </v-container>
 
       <v-container style="max-height: '100%'; max-width: 100%">
-        <v-row justify="center" align="center">
-          <v-col cols="5" justify="center" align="center">
-            <v-card class="indigo lighten-2" dark>
-                <v-card-text>
-                  <v-btn
-                    v-for="icon in footer_icons"
-                    :key="icon"
-                    class="mx-4"
-                    icon
-                    :href="icon.href"
-                  >
-                    <v-icon size="24px">
-                      {{ icon.icon }}
-                    </v-icon>
-                  </v-btn>
-                </v-card-text>
-                <v-divider></v-divider>
-                <v-card-text class="white--text">
-                  {{ new Date().getFullYear() }} — <strong>Adam Shakhbanov</strong>
-                </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
+          <v-row justify="center" align="center">
+              <v-col cols="5" justify="center" align="center">
+                  <v-card class="indigo darken-1" dark>
+                      <v-card-text>
+                          <v-btn
+                            v-for="icon in footer_icons"
+                            :key="icon"
+                            class="mx-4"
+                            icon
+                            :href="icon.href"
+                          >
+                              <v-icon size="24px">
+                                  {{ icon.icon }}
+                              </v-icon>
+                          </v-btn>
+                      </v-card-text>
+                      <v-divider></v-divider>
+                      <v-card-text class="white--text">
+                        {{ new Date().getFullYear() }} — <strong>Adam Shakhbanov</strong>
+                      </v-card-text>
+                  </v-card>
+              </v-col>
+          </v-row>
       </v-container>
       
     </v-main>
