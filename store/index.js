@@ -36,7 +36,15 @@ export const state = () => ({
             title: 'Hungary',
             name: 'National Assembly',
             to: '/Hungary'
-        }
+        },
+        {
+            icon: '/Moscow/0_Face_icon.jpg',
+            face: '/Moscow/0_Face.jpg',
+            min: '/Moscow/0_Face_min.jpg',
+            title: 'Moscow',
+            name: 'Moscow City Duma',
+            to: '/Moscow',
+        },
     ],
 })
 export const mutations = {
