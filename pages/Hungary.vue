@@ -39,7 +39,7 @@ export default{
     }
   },
   created(){
-    $nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg")
+    this.$nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg")
   }
 }
 </script>

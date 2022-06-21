@@ -135,11 +135,11 @@ export default {
         }
     },
     mounted(){
-      // this.$store.commit("setPages", this.pages);
-      this.$vuetify.theme.dark = false;
+        // this.$store.commit("setPages", this.pages);
+        this.$vuetify.theme.dark = false;
     },
     created(){
-      this.$nuxt.$on('bg-path', ($event) => (this.bg_path = $event))
+        this.$nuxt.$on('bg-path', ($event) => (this.bg_path = $event))
     },
 }
 </script>
