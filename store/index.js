@@ -22,6 +22,14 @@ export const state = () => ({
             to: '/Germany'
         },
         {
+            icon: '/Belarus/0_Face_icon.jpg',
+            face: '/Belarus/0_Face.jpg',
+            min: '/Belarus/0_Face_min.jpg',
+            title: 'Belarus',
+            name: 'House of Represent. & Council of Republic',
+            to: '/Belarus'
+        },
+        {
             icon: '/UK/0_Face_icon.jpg',
             face: '/UK/0_Face.jpg',
             min: '/UK/0_Face_min.jpg',
