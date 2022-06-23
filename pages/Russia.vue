@@ -42,7 +42,7 @@ export default{
   },
   data(){
     return{
-      imgNum: 22,
+      imgNum: 24,
       country: "Russia",
       title: "State Duma & SovFed of Russia"
     }

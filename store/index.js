@@ -1,7 +1,7 @@
 export const state = () => ({
     Pages: [
         {
-            icon: '/Russia/0_Face_min.jpg',
+            icon: '/Russia/0_Face_icon.jpg',
             face: '/Russia/0_Face.jpg',
             min: '/Russia/0_Face_min.jpg',
             title: 'Russia',
