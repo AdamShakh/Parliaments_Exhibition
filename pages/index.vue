@@ -1,11 +1,11 @@
 <template>
 <div>
     <v-card light>
-        <v-card-title class="headline" >
+        <v-card-title class="headline" style="display: flex; justify-content: center;">
             Welcome to Parler Square
         </v-card-title>
-        <v-card-text class="headline" justify="center" align="center">
-            Here you can see the Most Beautiful Parliamentary buildings in the World
+        <v-card-text class="headline" justify="center" align="center" style="color: #616161">
+            Here you can see Few of the Most Beautiful Parliamentary buildings in the World
         </v-card-text>
     </v-card>
     <v-container
@@ -21,9 +21,9 @@
                     light
                     :to="page.to"
                     router
-                    hover="true"
+                    hover
                 >
-                    <v-img :src="page.face" height="14em"></v-img>
+                    <v-img :lazy-src="page.min" :src="page.face" height="14em"></v-img>
                     <v-card-title class="headline">
                         {{ page.title }}
                     </v-card-title>
@@ -41,7 +41,7 @@
 export default {
     computed: {
         pages(){
-            return this.$store.getters["getPages"].slice(1); 
+            return this.$store.getters["getPages"]; 
         }
     },
     layout: 'index',

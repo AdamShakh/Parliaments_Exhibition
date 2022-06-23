@@ -2,8 +2,8 @@
     <page-template :imgNum=this.imgNum :country=this.country :title=this.title>
 
         <template  v-slot:Face>
-              <p style="margin: 0em; padding-top: 0.5em">Bundestag</p>
-              <p style="margin: 0em; padding-bottom: 0.5em">Germany</p>
+            <p style="margin: 0em; padding-top: 0.5em">Bundestag</p>
+            <p style="margin: 0em; padding-bottom: 0.5em">Germany</p>
         </template>
 
         <template  v-slot:Left>
@@ -54,7 +54,8 @@ export default{
     }
   },
   created(){
-    this.$nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg")
+      this.$nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg");
+      this.$nuxt.$emit('footer-theme', "red darken-2");
   }
 }
 </script>

@@ -1,18 +1,22 @@
 <template>
-  <v-app light>
-    <v-main light>
-      <v-row justify="center" align="left">
+  <v-app light style="margin-top: 25px">
+    <v-main light class="back-lowbright">
+      <v-row justify="start" align="center" style="margin-left: 26%;">
         <v-col cols="12" sm="8" md="6">
           <v-card>
             <v-card-title v-if="error.statusCode === 404">
-                {{ pageNotFound }}
+                <p>{{ pageNotFound }}</p>
             </v-card-title>
+            <v-card-text v-if="error.statusCode === 404" style="font-size: 1.2em">
+                <p>There is no such country.</p>
+                <p>Or this country is not represented in the current exhibition.</p>
+            </v-card-text>
             <v-card-title v-else>
                 {{ otherError }}
             </v-card-title>
             <v-card-actions>
               <v-btn
-                color="primary"
+                class="grey lighten-1"
                 nuxt
                 to="/"
               >
@@ -28,7 +32,7 @@
 
 <script>
 export default {
-  name: 'EmptyLayout',
+  name: 'ErrorLayout',
   //layout: 'empty',
   props: {
     error: {
@@ -48,6 +52,9 @@ export default {
     return {
       title
     }
+  },
+  created (){
+      this.$nuxt.$emit('footer-theme', "");
   }
 }
 </script>

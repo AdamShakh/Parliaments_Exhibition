@@ -7,7 +7,7 @@
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="true"
-      mini-variant-width="5em"
+      mini-variant-width="4em"
       :clipped="clipped"
       expand-on-hover
       fixed
@@ -22,13 +22,27 @@
 
         <v-list-item
           class="menu-item"
+          to="/"
+          router
+          exact
+        >
+            <v-list-item-avatar width="3em" height="3em">
+              <v-icon size="52px">mdi-home</v-icon>
+            </v-list-item-avatar>
+            
+            <v-list-item-content>
+              <v-list-item-title>Parler Square</v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          class="menu-item"
           v-for="(page, i) in pages"
           :key="i"
           :to="page.to"
           router
           exact
         >
-            <v-list-item-avatar width="4em" height="4em">
+            <v-list-item-avatar width="3em" height="3em">
               <v-img :src="page.icon"></v-img>
             </v-list-item-avatar>
             
@@ -60,39 +74,41 @@
 
     <v-main light class="back-lowbright">
 
-      <v-container>
+      <v-container id="menu_toggle" style="padding-bottom: 0px;">
         <v-row
           align="center"
-          justify="left"
+          justify="start"
         >
           <v-btn
             @click.stop="drawer = !drawer"
             fab
             small
-            icon
+            :class="footer_theme"
+            style="margin-left: 10px; margin-top: 10px"
+            dark
           >
-            <v-icon>mdi-apps</v-icon>
+            <v-icon>mdi-menu</v-icon>
           </v-btn>
         </v-row>
       </v-container>
 
-      <v-container light>
-        <Nuxt />
-      </v-container>
-
-      <v-container style="max-height: '100%'; max-width: 100%">
+      <Nuxt />
+      
+      <v-container id="footer" style="max-height: 100%; max-width: 100%">
           <v-row justify="center" align="center">
               <v-col cols="5" justify="center" align="center">
-                  <v-card class="indigo darken-1" dark>
+                  <v-card :class="footer_theme" dark>
                       <v-card-text>
+                          <v-btn v-if="!drawer" class="mx-4" icon fab small router to="/">
+                              <v-icon size="30px">mdi-home</v-icon>
+                          </v-btn>
                           <v-btn
-                            v-for="icon in footer_icons"
-                            :key="icon"
-                            class="mx-4"
-                            icon
-                            :href="icon.href"
+                            v-for="(icon, i) in footer_icons"
+                            :key="i"
+                            class="mx-4" icon fab small
+                            :href="icon.href" target="_blank"
                           >
-                              <v-icon size="24px">
+                              <v-icon size="30px">
                                   {{ icon.icon }}
                               </v-icon>
                           </v-btn>
@@ -118,15 +134,15 @@ export default {
         return {
             drawer: true,
             footer_icons: [
-              {icon: 'mdi-home', href: "/"},
-              {icon: 'mdi-github', href: "https://github.com/AdamShakh/Parliaments_Exhibition"},
-              {icon: 'mdi-vuetify', href: "https://vuetifyjs.com/"},
-              {icon: 'mdi-nuxt', href: "https://nuxtjs.org/"},
-              {icon: 'mdi-vuejs', href: "https://vuejs.org/"},
+                {icon: 'mdi-github', href: "https://github.com/AdamShakh/Parliaments_Exhibition"},
+                {icon: 'mdi-vuetify', href: "https://vuetifyjs.com/"},
+                {icon: 'mdi-nuxt', href: "https://nuxtjs.org/"},
+                {icon: 'mdi-vuejs', href: "https://vuejs.org/"},
             ],
             clipped: true,
-            fixed: false,
+            // fixed: false,
             bg_path: '',
+            footer_theme: 'indigo darken-1',
         }
     },
     computed: {
@@ -139,7 +155,8 @@ export default {
         this.$vuetify.theme.dark = false;
     },
     created(){
-        this.$nuxt.$on('bg-path', ($event) => (this.bg_path = $event))
+        this.$nuxt.$on('bg-path', ($event) => (this.bg_path = $event));
+        this.$nuxt.$on('footer-theme', ($event) => (this.footer_theme = $event));
     },
 }
 </script>
@@ -159,4 +176,5 @@ export default {
     width: 100%;
     height: 100%;
 } */
+/* https://vuetifyjs.com/en/styles/colors/#material-colors - for footer_theme */
 </style>

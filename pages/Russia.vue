@@ -48,7 +48,8 @@ export default{
     }
   },
   created(){
-    this.$nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg")
+      this.$nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg");
+      this.$nuxt.$emit('footer-theme', "indigo darken-2");
   }
 }
 </script>

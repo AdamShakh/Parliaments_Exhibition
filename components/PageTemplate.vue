@@ -1,10 +1,10 @@
 <template>
-  <v-container>
+  <v-container id="page_template">
     <v-row justify="center" align="center">
-        <v-col cols="12" justify="center" align="center">
-          <v-card light height="65%" width="65%">
+        <v-col cols="12" justify="center" align="center" style="padding-top: 0%;">
+          <v-card light height="65%" width="73%" >
             <v-img :lazy-src="'/'+this.country+'/0_Face_min.jpg'" :src="'/' + this.country + '/0_Face.jpg'"></v-img>
-            <div align="center" style="font-size: 1.2em;">
+            <div align="center" style="font-size: 1.3em;">
                 <slot name="Face"></slot>
             </div>
           </v-card>
@@ -18,7 +18,7 @@
             <v-card><v-img :src="'/' + this.country + '/0_Left.jpg'"></v-img></v-card>
           </v-col>
           <v-col cols="6" justify="end" align="center">
-            <div style="margin: 1em">
+            <div style="margin-right: 1em; margin-top: 16px; font-size: 1.09em">
               <slot name="Left"></slot>
             </div>
           </v-col>
@@ -28,21 +28,20 @@
 
     <v-card light>
       <v-row justify="center" align="center">
-        <v-col cols="6" justify="start" align="center">
-          <div style="margin: 1em">
-            <slot name="Right"></slot>
-          </div>
-        </v-col>
-        <v-col cols="6" justify="start" align="center">
-          <v-card><v-img :src="'/' + this.country + '/0_Right.jpg'"></v-img></v-card>
-        </v-col>
+          <v-col cols="6" justify="start" align="center">
+            <div style="margin-left: 1em; margin-top: 16px; font-size: 1.09em">
+              <slot name="Right"></slot>
+            </div>
+          </v-col>
+          <v-col cols="6" justify="end" align="center">
+            <v-card><v-img :src="'/' + this.country + '/0_Right.jpg'"></v-img></v-card>
+          </v-col>
       </v-row>
     </v-card>
     <br> <br>
     
     <v-card>
       <v-carousel 
-        v-model="model" 
         height="640"
         cycle
         show-arrows-on-hover

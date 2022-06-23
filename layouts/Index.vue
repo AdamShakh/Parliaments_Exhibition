@@ -8,16 +8,19 @@
             <v-container style="max-height: '100%'; max-width: 100%">
                 <v-row justify="center" align="center">
                 <v-col cols="4" justify="center" align="center">
-                    <v-card class="blue darken-1" dark>
+                    <v-card class="blue darken-2" dark>
                         <v-card-text>
                             <v-btn
-                                v-for="icon in footer_icons"
-                                :key="icon"
+                                v-for="(icon, i) in footer_icons"
+                                :key="i"
                                 class="mx-4"
                                 icon
+                                fab
+                                small
                                 :href="icon.href"
+                                target="_blank"
                             >
-                                <v-icon size="24px">
+                                <v-icon size="30px">
                                     {{ icon.icon }}
                                 </v-icon>
                             </v-btn>
