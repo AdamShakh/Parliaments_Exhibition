@@ -2,9 +2,9 @@
     <page-template :imgNum=this.imgNum :country=this.country :title=this.title>
 
         <template v-slot:Face>
-            <p style="margin: 0em; padding-top: 0.5em">House of Representatives & Council of Republic</p>
+            <p style="margin: 0em;">House of Representatives & Council of Republic</p>
             <p style="margin: 0em;">National Assembly</p>
-            <p style="margin: 0em; padding-bottom: 0.5em">Republic of Belarus</p>
+            <p style="margin: 0em;">Republic of Belarus</p>
         </template>
 
         <template v-slot:Left>
@@ -24,14 +24,14 @@
 
         <template v-slot:Right>
             <p>
-                The House of Representatives of the National Assembly of the Republic of Belarus 
+                <b>The House of Representatives</b> of the National Assembly of the Republic of Belarus 
                 is the lower house of the parliament of Belarus, while the upper house is the Council of the Republic.
                 It was established after the Constitution of Belarus was amended in 1996, 
                 replacing the Supreme Council of Belarus.
                 It consists of 110 deputies elected to four year terms
             </p>
             <p>
-                The Council of the Republic of the National Assembly of the Republic of Belarus 
+                <b>The Council of the Republic</b> of the National Assembly of the Republic of Belarus 
                 is the upper house of the parliament of Belarus.
                 The Council consists of 64 members, and the representation is based geographically, 
                 with most of the elected members come from civil society organizations, labour collectives 
@@ -54,7 +54,7 @@ export default{
     return{
       imgNum: 25,
       country: "Belarus",
-      title: "House of Representatives & Council of Republic"
+      title: "House of Representatives & Council of Republic of Belarus"
     }
   },
   created(){

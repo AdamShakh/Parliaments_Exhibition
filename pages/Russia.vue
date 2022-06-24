@@ -2,9 +2,9 @@
     <page-template v-bind:imgNum=this.imgNum :country=this.country :title=this.title>
 
         <template v-slot:Face>
-            <p style="margin: 0em; padding-top: 0.5em">State Duma & Federation Council</p>
+            <p style="margin: 0em;">State Duma & Federation Council</p>
             <p style="margin: 0em;">Federal Assembly</p>
-            <p style="margin: 0em; padding-bottom: 0.5em">Russian Federation</p>
+            <p style="margin: 0em;">Russian Federation</p>
         </template>
 
         <template v-slot:Left>
@@ -24,9 +24,18 @@
 
         <template v-slot:Right>
             <p>Federal Assembly - A bicameral Parliament of Russia.</p>
-            <p><b>State Duma</b> is a lower house that's represents the <b>People</b> of country. There are 450 Deputies</p>
-            <p><b>Federation Council</b> is an upper house that's represents the <b>Federal Subject</b>. 
-            There are 170 Senators, 2 from every of 85 subjects</p>
+            <p>
+                <b>State Duma</b> is a lower house that's represents the <b>People</b> of country. There are 450 Deputies.
+                The Duma creates bills and amendments on behalf of the people. The Prime Minister is also accountable to the Duma.
+            </p>
+            <p>
+                <b>Federation Council</b> is an upper house that's represents the <b>Federal Subject</b>. 
+                There are 170 Senators, 2 from every of 85 subjects.
+                The Federation Council scrutinises bills that have been approved by the State Duma. 
+                It regularly reviews and amends bills from the Duma. 
+                In this capacity, the Federation Council checks the acceptability of amendments of
+                State Duma on behalf of the subjects.
+            </p>
         </template>
 
     </page-template>

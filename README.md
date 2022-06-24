@@ -1,5 +1,6 @@
 # Parliaments Exhibition
 
+## <https://parler-arch-expo.netlify.app/>
 ## By Adam Shakhbanov
 
 ## Build Setup
@@ -16,8 +17,6 @@ $ npm run build
 $ npm run start
 
 # generate static project
-$ npm run static
-# or for old versions of nuxt
 $ npm run generate
 ```
 

@@ -2,9 +2,9 @@
     <page-template :imgNum=this.imgNum :country=this.country :title=this.title>
 
         <template v-slot:Face>
-            <p style="margin: 0em; padding-top: 0.5em">House of Commons & House of Lords</p>
+            <p style="margin: 0em;">House of Commons & House of Lords</p>
             <p style="margin: 0em;">Parliament</p>
-            <p style="margin: 0em; padding-bottom: 0.5em">United Kingdom</p>
+            <p style="margin: 0em;">United Kingdom of Great Britain and Northern Ireland</p>
         </template>
 
         <template v-slot:Left>
@@ -19,14 +19,14 @@
         <template v-slot:Right>
             <p>United Kingdom have a bicameral Parliament.</p>
             <p>
-                House of Commons is an elected body consisting of 650 members known as members of Parliament (MPs). 
+                <b>House of Commons</b> is an elected body consisting of 650 members known as members of Parliament (MPs). 
                 MPs are elected to represent constituencies by the first-past-the-post system and 
                 hold their seats until Parliament is dissolved.
                 The lower house represents the people and on their behalf introduces bills, amendments 
                 and elects the Prime Minister.
             </p>
             <p>
-                House of Lords is an non-elected body consisting of 768. 
+                <b>House of Lords</b> is an non-elected body consisting of 768. 
                 Membership is by appointment, heredity or official function.
                 The House of Lords scrutinises bills that have been approved by the House of Commons.
                 It regularly reviews and amends bills from the Commons.
@@ -49,7 +49,7 @@ export default{
     return{
       imgNum: 17,
       country: "UK",
-      title: "UK Parliament"
+      title: "Parliament of the United Kingdom"
     }
   },
   created(){

@@ -1,9 +1,9 @@
 <template>
     <page-template :imgNum=this.imgNum :country=this.country :title=this.title>
 
-        <template  v-slot:Face>
-            <p style="margin: 0em; padding-top: 0.5em">Bundestag</p>
-            <p style="margin: 0em; padding-bottom: 0.5em">Germany</p>
+        <template v-slot:Face>
+            <p style="margin: 0em;">Bundestag</p>
+            <p style="margin: 0em;">Federal Republic of Germany</p>
         </template>
 
         <template  v-slot:Left>
@@ -23,7 +23,8 @@
         </template>
 
         <template  v-slot:Right>
-            <p> Bundestag (Federal Assembly) - Unicameral Federal Parliament. 
+            <p>
+              <b>Bundestag (Federal Assembly)</b> - Unicameral Federal Parliament. 
               It is the only federal representative body that is directly elected by the German people.
             </p>
             <p>
@@ -32,6 +33,11 @@
               and State Duma of Russian Federation.
               It's one of the legislative bodies of Germany and thus it is the historical successor 
               to the earlier Reichstag.
+            </p>
+            <p>
+              <b>Bundesrat (Federal Council)</b> - It is usually considered the upper house of parliament, 
+              although it is not formally such. 
+              Аnd is a separate legislative body that de facto performs the role of the upper house
             </p>
         </template>
 
@@ -50,7 +56,7 @@ export default{
     return{
       imgNum: 25,
       country: "Germany",
-      title: "Bundestag"
+      title: "Bundestag of Germany"
     }
   },
   created(){

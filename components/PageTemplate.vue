@@ -4,7 +4,7 @@
         <v-col cols="12" justify="center" align="center" style="padding-top: 0%;">
           <v-card light height="65%" width="73%" >
             <v-img :lazy-src="'/'+this.country+'/0_Face_min.jpg'" :src="'/' + this.country + '/0_Face.jpg'"></v-img>
-            <div align="center" style="font-size: 1.3em;">
+            <div align="center" style="font-size: 1.3em; padding: 0.5em;">
                 <slot name="Face"></slot>
             </div>
           </v-card>

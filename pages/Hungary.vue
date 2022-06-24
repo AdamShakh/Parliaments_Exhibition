@@ -2,19 +2,25 @@
     <page-template :imgNum=this.imgNum :country=this.country :title=this.title>
 
         <template v-slot:Face>
-            <p style="margin: 0em; padding-top: 0.5em">National Assembly</p>
-            <p style="margin: 0em; padding-bottom: 0.5em">Hungary</p>
+            <p style="margin: 0em;">National Assembly</p>
+            <p style="margin: 0em;">Hungary</p>
         </template>
 
         <template v-slot:Left>
             <p>
-                Parliament occupying Palace in Gothic Revival architectural style.
                 Palace built in 1904.
+                Parliament occupying Palace in <b>neo-Gothic Revival</b> architectural style.
+                It was designed by Hungarian architect Imre Steindl.
+                It has been the largest building in Hungary since its completion.
+                The architectural style of the Hungarian parliament building was influenced by 
+                the gothic <b>Vienna City Hall</b>,
+                the <u>renaissance</u> elements like the cupola was influenced by the <u>Maria vom Siege church</u> in Vienna.
+                During the People's Republic of Hungary a red star perched on the top of the dome.
             </p>
         </template>
 
         <template v-slot:Right>
-            <p>National Assembly - A Unicameral Parliament of Hungary
+            <p><b>National Assembly</b> - A Unicameral Parliament of Hungary
             consists of 199 members elected to 4-year terms</p>
             <p>It's represents the people and on their behalf introduces bills, amendments 
             and elects the Prime Minister</p>
