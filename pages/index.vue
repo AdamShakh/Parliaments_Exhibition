@@ -45,11 +45,9 @@ export default {
         }
     },
     layout: 'index',
-    head () {
+    head() {
         const title = 'Parler Square'
-        return {
-            title
-        }
+        return { title }
     } 
 }
 </script>

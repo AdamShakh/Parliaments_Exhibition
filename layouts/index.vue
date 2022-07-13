@@ -1,11 +1,11 @@
 <template>
     <v-app light>
         <v-main light class="indigo lighten-3">
-            <v-container light>
+            <v-container id="index_page" light>
                 <Nuxt />
             </v-container>
             
-            <v-container style="max-height: '100%'; max-width: 100%">
+            <v-container id="footer" style="max-height: 100%; max-width: 100%">
                 <v-row justify="center" align="center">
                 <v-col cols="4" justify="center" align="center">
                     <v-card class="blue darken-2" dark>
@@ -13,12 +13,8 @@
                             <v-btn
                                 v-for="(icon, i) in footer_icons"
                                 :key="i"
-                                class="mx-4"
-                                icon
-                                fab
-                                small
-                                :href="icon.href"
-                                target="_blank"
+                                class="mx-4" icon fab small
+                                :href="icon.href" target="_blank"
                             >
                                 <v-icon size="30px">
                                     {{ icon.icon }}
@@ -40,15 +36,10 @@
 <script>
 export default {
     name: 'IndexLayout',
-    data(){
-        return {
-            footer_icons: [
-                {icon: 'mdi-github', href: "https://github.com/AdamShakh/Parliaments_Exhibition"},
-                {icon: 'mdi-vuetify', href: "https://vuetifyjs.com/"},
-                {icon: 'mdi-nuxt', href: "https://nuxtjs.org/"},
-                {icon: 'mdi-vuejs', href: "https://vuejs.org/"},
-            ],
+    computed: {
+        footer_icons(){
+            return this.$store.getters.getFooterIcons
         }
-    }
+    },
 }
 </script>

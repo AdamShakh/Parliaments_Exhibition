@@ -1,13 +1,13 @@
 <template>
-    <page-template :imgNum=this.imgNum :country=this.country :title=this.title>
+    <page-template v-bind=info>
 
         <template v-slot:Face>
-            <p style="margin: 0em;">House of Representatives & Council of Republic</p>
-            <p style="margin: 0em;">National Assembly</p>
-            <p style="margin: 0em;">Republic of Belarus</p>
+            <div>House of Representatives & Council of Republic</div>
+            <div>National Assembly</div>
+            <div>Republic of Belarus</div>
         </template>
 
-        <template v-slot:Left>
+        <template v-slot:First>
             <p>
                 The Lower House of Parliament and the Cabinet of Ministers are located in the <b>Government building</b>
                 - one of the best monuments of <b>Soviet Constructivism</b>, which marked the beginning of the 
@@ -22,7 +22,7 @@
             </p>
         </template>
 
-        <template v-slot:Right>
+        <template v-slot:Second>
             <p>
                 <b>The House of Representatives</b> of the National Assembly of the Republic of Belarus 
                 is the lower house of the parliament of Belarus, while the upper house is the Council of the Republic.
@@ -46,20 +46,19 @@
 import PageTemplate from '@/components/PageTemplate.vue'
 
 export default{
-  name: 'Belarus',
-  components:{
-    PageTemplate
-  },
-  data(){
-    return{
-      imgNum: 25,
-      country: "Belarus",
-      title: "House of Representatives & Council of Republic of Belarus"
+    name: 'Belarus',
+    components:{
+        PageTemplate
+    },
+    data(){
+        return{
+            info: {
+                imgNum: 25,
+                country: "Belarus",
+                title: "National Assembly of Belarus",
+                footerTheme: "green darken-2"
+            }
+        }
     }
-  },
-  created(){
-      this.$nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg");
-      this.$nuxt.$emit('footer-theme', "green darken-2");
-  }
 }
 </script>

@@ -1,12 +1,12 @@
 <template>
-    <page-template v-bind:imgNum=this.imgNum :country=this.country :title=this.title>
+    <page-template v-bind=info>
 
         <template v-slot:Face>
-            <p style="margin: 0em;">Moscow City Duma</p>
-            <p style="margin: 0em;">Russian federal city of Moscow</p>
+            <div>Moscow City Duma</div>
+            <div>Russian federal city of Moscow</div>
         </template>
 
-        <template v-slot:Left>
+        <template v-slot:First>
             <p>
                 In 2015, the Moscow City Duma moved to a new complex located in historical buildings 
                 and on the territory of the former dukes Gagarin estate on Strastnoy Boulevard. Previously, 
@@ -18,7 +18,7 @@
             </p>
         </template>
 
-        <template v-slot:Right>
+        <template v-slot:Second>
             <p>
                 <b>The Moscow City Duma</b> is the Russian regional parliament in Moscow, 
                 the unicameral City Duma (city council, a local parliament) of the Russian capital city of Moscow. 
@@ -39,20 +39,19 @@
 import PageTemplate from '@/components/PageTemplate.vue'
 
 export default{
-  name: 'Moscow',
-  components:{
-    PageTemplate
-  },
-  data(){
-    return{
-      imgNum: 17,
-      country: "Moscow",
-      title: "City Duma of Moscow"
+    name: 'Moscow',
+    components:{
+        PageTemplate
+    },
+    data(){
+        return{
+            info: {
+                imgNum: 17,
+                country: "Moscow",
+                title: "City Duma of Moscow",
+                footerTheme: "red darken-2"
+            }
+        }
     }
-  },
-  created(){
-      this.$nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg");
-      this.$nuxt.$emit('footer-theme', "red darken-2");
-  }
 }
 </script>

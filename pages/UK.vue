@@ -1,13 +1,13 @@
 <template>
-    <page-template :imgNum=this.imgNum :country=this.country :title=this.title>
+    <page-template v-bind=info>
 
         <template v-slot:Face>
-            <p style="margin: 0em;">House of Commons & House of Lords</p>
-            <p style="margin: 0em;">Parliament</p>
-            <p style="margin: 0em;">United Kingdom of Great Britain and Northern Ireland</p>
+            <div>House of Commons & House of Lords</div>
+            <div>Parliament</div>
+            <div>United Kingdom of Great Britain and Northern Ireland</div>
         </template>
 
-        <template v-slot:Left>
+        <template v-slot:First>
             Parliament occupying Palace of Westminster.
             It's lies on the north bank of the River Thames in the City of Westminster
             Its name, which derives from the neighbouring Westminster Abbey, 
@@ -16,7 +16,7 @@
             the New Palace that stands today.
         </template>
 
-        <template v-slot:Right>
+        <template v-slot:Second>
             <p>United Kingdom have a bicameral Parliament.</p>
             <p>
                 <b>House of Commons</b> is an elected body consisting of 650 members known as members of Parliament (MPs). 
@@ -41,20 +41,19 @@
 import PageTemplate from '@/components/PageTemplate.vue'
 
 export default{
-  name: 'UK',
-  components:{
-    PageTemplate
-  },
-  data(){
-    return{
-      imgNum: 17,
-      country: "UK",
-      title: "Parliament of the United Kingdom"
+    name: 'UK',
+    components:{
+        PageTemplate
+    },
+    data(){
+        return{
+            info: {
+                imgNum: 17,
+                country: "UK",
+                title: "Parliament of the United Kingdom",
+                footerTheme: "indigo darken-1"
+            }
+        }
     }
-  },
-  created(){
-      this.$nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg");
-      this.$nuxt.$emit('footer-theme', "indigo darken-1");
-  }
 }
 </script>

@@ -7,7 +7,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - Parliaments Exhibition',
-    title: 'Parliaments_Exhibition',
+    title: 'Parliaments Exhibition',
     htmlAttrs: {
       lang: 'en'
     },

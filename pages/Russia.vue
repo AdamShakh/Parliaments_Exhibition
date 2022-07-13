@@ -1,13 +1,13 @@
 <template>
-    <page-template v-bind:imgNum=this.imgNum :country=this.country :title=this.title>
+    <page-template v-bind=info>
 
         <template v-slot:Face>
-            <p style="margin: 0em;">State Duma & Federation Council</p>
-            <p style="margin: 0em;">Federal Assembly</p>
-            <p style="margin: 0em;">Russian Federation</p>
+            <div>State Duma & Federation Council</div>
+            <div>Federal Assembly</div>
+            <div>Russian Federation</div>
         </template>
 
-        <template v-slot:Left>
+        <template v-slot:First>
             <p>
                 State Duma is placed in the building of <b>Soviet of Labor and Defense</b> Moscow Russia built in 1935.
                 Previously in that building breafly were placed a <b>Soviet of Labor and Defense</b> of USSR
@@ -22,7 +22,7 @@
             </p>
         </template>
 
-        <template v-slot:Right>
+        <template v-slot:Second>
             <p>Federal Assembly - A bicameral Parliament of Russia.</p>
             <p>
                 <b>State Duma</b> is a lower house that's represents the <b>People</b> of country. There are 450 Deputies.
@@ -45,20 +45,19 @@
 import PageTemplate from '@/components/PageTemplate.vue'
 
 export default{
-  name: 'Russia',
-  components:{
-    PageTemplate
-  },
-  data(){
-    return{
-      imgNum: 24,
-      country: "Russia",
-      title: "State Duma & SovFed of Russia"
+    name: 'Russia',
+    components:{
+        PageTemplate
+    },
+    data(){
+        return{
+            info: {
+                imgNum: 24,
+                country: "Russia",
+                title: "Federal Assembly of Russia",
+                footerTheme: "indigo darken-2"
+            }
+        }
     }
-  },
-  created(){
-      this.$nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg");
-      this.$nuxt.$emit('footer-theme', "indigo darken-2");
-  }
 }
 </script>

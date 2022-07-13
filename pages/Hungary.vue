@@ -1,12 +1,12 @@
 <template>
-    <page-template :imgNum=this.imgNum :country=this.country :title=this.title>
+    <page-template v-bind=info>
 
         <template v-slot:Face>
-            <p style="margin: 0em;">National Assembly</p>
-            <p style="margin: 0em;">Hungary</p>
+            <div>National Assembly</div>
+            <div>Hungary</div>
         </template>
 
-        <template v-slot:Left>
+        <template v-slot:First>
             <p>
                 Palace built in 1904.
                 Parliament occupying Palace in <b>neo-Gothic Revival</b> architectural style.
@@ -19,7 +19,7 @@
             </p>
         </template>
 
-        <template v-slot:Right>
+        <template v-slot:Second>
             <p><b>National Assembly</b> - A Unicameral Parliament of Hungary
             consists of 199 members elected to 4-year terms</p>
             <p>It's represents the people and on their behalf introduces bills, amendments 
@@ -33,20 +33,19 @@
 import PageTemplate from '@/components/PageTemplate.vue'
 
 export default{
-  name: 'Hungary',
-  components:{
-    PageTemplate
-  },
-  data(){
-    return{
-      imgNum: 21,
-      country: "Hungary",
-      title: "National Assembly of Hungary"
+    name: 'Hungary',
+    components:{
+        PageTemplate
+    },
+    data(){
+        return{
+            info: {
+                imgNum: 21,
+                country: "Hungary",
+                title: "National Assembly of Hungary",
+                footerTheme: "pink darken-4"
+            }
+        }
     }
-  },
-  created(){
-      this.$nuxt.$emit('bg-path', "/" + this.country + "/Flag.jpg");
-      this.$nuxt.$emit('footer-theme', "pink darken-4");
-  }
 }
 </script>
