@@ -1,7 +1,7 @@
 <template>
 <v-app>
     
-    <v-img :src="bg_path" style="position: fixed; background-size:cover; width: 100%; height: 100%;">
+    <v-img :src="bgSrc" style="position: fixed; background-size:cover; width: 100%; height: 100%;">
     </v-img>
 
     <v-navigation-drawer
@@ -110,7 +110,7 @@ export default {
     data() {
         return {
             drawer: true,
-            bg_path: '',
+            bgSrc: '',
             footer_theme: 'blue-grey darken-3',
         }
     },
@@ -123,12 +123,19 @@ export default {
         }
     },
     created(){
-        this.$nuxt.$on('bg-path', ($event) => (this.bg_path = $event));
-        this.$nuxt.$on('footer-theme', ($event) => (this.footer_theme = $event));
-    },
-    mounted(){
+        this.$nuxt.$on('bgSrc-footerThm', ($event) => {
+            this.bgSrc = $event.bgSrc;
+            this.footer_theme = $event.footerThm;
+        })
+        
         this.$vuetify.theme.dark = false;
+        
+        // this.$nuxt.$on('bg-path', ($event) => (this.bgSrc = $event));
+        // this.$nuxt.$on('footer-theme', ($event) => (this.footer_theme = $event));
     },
+    beforeDestroy(){
+        this.$nuxt.$off('bgSrc-footerThm')
+    }
 }
 </script>
 

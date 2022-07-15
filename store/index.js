@@ -1,54 +1,52 @@
-const faceTemplates = {
-    icon: (country) => ('/' + country + '/0_Face_icon.jpg'),
-    face: (country) => ('/' + country + '/0_Face.jpg'),
-    min:  (country) => ('/' + country + '/0_Face_min.jpg'),
+const PageImgSrcs = {
+    icon:  (country) => ('/' + country + '/0_Face_icon.jpg'),
+    face:  (country) => ('/' + country + '/0_Face.jpg'),
+    min:   (country) => ('/' + country + '/0_Face_min.jpg'),
+    left:  (country) => ('/' + country + '/0_Left.jpg'),
+    right: (country) => ('/' + country + '/0_Right.jpg'),
+    flag:  (country) => ('/' + country + '/Flag.jpg'),
 };
+function addImgSrcs(item){
+    const country = item.to.slice(1);
+    item.icon = PageImgSrcs.icon(country);
+    item.face = PageImgSrcs.face(country);
+    item.min  = PageImgSrcs.min(country);
+}
+
 export const state = () => ({
     Pages: [
         {
-            icon: faceTemplates.icon('Russia'),
-            face: faceTemplates.face('Russia'),
-            min:  faceTemplates.min('Russia'),
+            icon: '', face: '', min:  '',
             title: 'Russia',
             name: 'State Duma & Federation Council',
             to: '/Russia',
         },
         {
-            icon: faceTemplates.icon('Germany'),
-            face: faceTemplates.face('Germany'),
-            min:  faceTemplates.min('Germany'),
+            icon: '', face: '', min:  '',
             title: 'Germany',
             name: 'Bundestag',
             to: '/Germany'
         },
         {
-            icon: faceTemplates.icon('Belarus'),
-            face: faceTemplates.face('Belarus'),
-            min:  faceTemplates.min('Belarus'),
+            icon: '', face: '', min:  '',
             title: 'Belarus',
             name: 'House of Represent. & Council of Republic',
             to: '/Belarus'
         },
         {
-            icon: faceTemplates.icon('UK'),
-            face: faceTemplates.face('UK'),
-            min:  faceTemplates.min('UK'),
+            icon: '', face: '', min:  '',
             title: 'United Kingdom',
             name: 'House of Commons & House of Lords',
             to: '/UK'
         },
         {
-            icon: faceTemplates.icon('Hungary'),
-            face: faceTemplates.face('Hungary'),
-            min:  faceTemplates.min('Hungary'),
+            icon: '', face: '', min:  '',
             title: 'Hungary',
             name: 'National Assembly',
             to: '/Hungary'
         },
         {
-            icon: faceTemplates.icon('Moscow'),
-            face: faceTemplates.face('Moscow'),
-            min:  faceTemplates.min('Moscow'),
+            icon: '', face: '', min:  '',
             title: 'Moscow',
             name: 'Moscow City Duma',
             to: '/Moscow',
@@ -63,14 +61,18 @@ export const state = () => ({
 })
 export const getters = {
     getPages(state) {
+        state.Pages.forEach(addImgSrcs)
         return state.Pages
     },
     getFooterIcons(state) {
         return state.FooterIcons
-    }
+    },
+    getPageImgSrcs(state) {
+        return PageImgSrcs
+    },
 }
-export const mutations = {
-    setPages(state, newPages) {
-        state.Pages = newPages
-    }
-}
+// export const mutations = {
+//     setPages(state, newPages) {
+//         state.Pages = newPages
+//     }
+// }

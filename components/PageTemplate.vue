@@ -3,9 +3,9 @@
         <v-row justify="center" align="center">
             <v-col cols="12" justify="center" align="center" style="padding-top: 0%;">
                 <v-card light height="65%" width="73%" >
-                    <v-img 
-                        :lazy-src="'/' + this.country + '/0_Face_min.jpg'" 
-                        :src="'/' + this.country + '/0_Face.jpg'">
+                    <v-img
+                        :lazy-src="faceMinSrc" 
+                        :src="faceSrc">
                     </v-img>
                     <div align="center" style="font-size: 1.3em; padding: 0.5em;">
                         <slot name="Face"></slot>
@@ -18,7 +18,7 @@
         <v-card light>
             <v-row justify="center" align="center">
                 <v-col cols="6" justify="start" align="center">
-                    <v-card><v-img :src="'/' + this.country + '/0_Left.jpg'"></v-img></v-card>
+                    <v-card><v-img :src="leftSrc"></v-img></v-card>
                 </v-col>
                 <v-col cols="6" justify="end" align="center">
                     <div style="margin-right: 1em; margin-top: 16px; font-size: 1.09em">
@@ -37,7 +37,7 @@
                     </div>
                 </v-col>
                 <v-col cols="6" justify="end" align="center">
-                    <v-card><v-img :src="'/' + this.country + '/0_Right.jpg'"></v-img></v-card>
+                    <v-card><v-img :src="rightSrc"></v-img></v-card>
                 </v-col>
             </v-row>
         </v-card>
@@ -51,7 +51,7 @@
                 hide-delimiter-background
             >
                 <v-carousel-item
-                    v-for="(image, i) in images"
+                    v-for="(image, i) in imagesSrc"
                     :key="i"
                 >
                     <v-sheet
@@ -93,7 +93,25 @@ export default {
         },
     },
     computed: {
-        images(){
+        _imgSrcs(){
+            return this.$store.getters.getPageImgSrcs
+        },
+        faceSrc(){
+            return this._imgSrcs.face(this.country)
+        },
+        faceMinSrc(){
+            return this._imgSrcs.min(this.country)
+        },
+        leftSrc(){
+            return this._imgSrcs.left(this.country)
+        },
+        rightSrc(){
+            return this._imgSrcs.right(this.country)
+        },
+        flagSrc(){
+            return this._imgSrcs.flag(this.country)
+        },
+        imagesSrc(){
             let images = []
             for (let i=1; i <= this.imgNum; i++) {
                 images.push('/' + this.country + '/' + i + '.jpg')
@@ -102,8 +120,13 @@ export default {
         }
     },
     created() {
-        this.$nuxt.$emit('bg-path', '/' + this.country + '/Flag.jpg');
-        this.$nuxt.$emit('footer-theme', this.footerTheme);
+        this.$nuxt.$emit('bgSrc-footerThm', {
+            bgSrc: this.flagSrc, 
+            footerThm: this.footerTheme
+        })
+
+        // this.$nuxt.$emit('bg-path', this.flagSrc);
+        // this.$nuxt.$emit('footer-theme', this.footerTheme);
     },
     head() {
         const title = this.title
