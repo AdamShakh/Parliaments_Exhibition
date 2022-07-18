@@ -7,9 +7,9 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - Parliaments Exhibition',
-    title: 'Parliaments Exhibition',
+    title: 'Parler Arch Expo',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'en'/*this.$store.getters.getCurrentLang*/
     },
     meta: [
       { charset: 'utf-8' },

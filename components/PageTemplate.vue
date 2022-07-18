@@ -91,6 +91,10 @@ export default {
             type: String,
             required: true
         },
+        lang: {
+            type: String,
+            required: true
+        },
     },
     computed: {
         _imgSrcs(){
@@ -120,13 +124,12 @@ export default {
         }
     },
     created() {
-        this.$nuxt.$emit('bgSrc-footerThm', {
-            bgSrc: this.flagSrc, 
-            footerThm: this.footerTheme
+        this.$nuxt.$emit('getPageInfo', {
+            bgSrc:     this.flagSrc, 
+            footerThm: this.footerTheme,
+            lang:      this.lang,
+            cntry:     this.country,
         })
-
-        // this.$nuxt.$emit('bg-path', this.flagSrc);
-        // this.$nuxt.$emit('footer-theme', this.footerTheme);
     },
     head() {
         const title = this.title

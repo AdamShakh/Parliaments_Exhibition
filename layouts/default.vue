@@ -35,8 +35,7 @@
                 v-for="(page, i) in pages"
                 :key="i"
                 :to="page.to"
-                router
-                exact
+                router exact
             >
                 <v-list-item-avatar width="3em" height="3em">
                     <v-img :src="page.icon"></v-img>
@@ -51,21 +50,46 @@
 
     <v-main light class="back-lowbright">
 
-        <v-container id="menu_toggle" style="padding-bottom: 0px;">
-            <v-row
-                align="center"
-                justify="start"
-            >
-                <v-btn
-                    @click.stop="drawer = !drawer"
-                    fab
-                    small
-                    :class="footer_theme"
-                    style="margin-left: 10px; margin-top: 10px"
-                    dark
-                >
-                    <v-icon>mdi-menu</v-icon>
-                </v-btn>
+        <v-container id="menu_toggle-lang_menu" style="padding-bottom: 0px;">
+            <v-row justify="center" align="center">
+                <v-col justify="start" align="start" style="padding-bottom: 0px;">
+                    <v-btn
+                        :class="footer_theme" fab small dark
+                        @click.stop="drawer = !drawer"
+                    >
+                        <v-icon>mdi-menu</v-icon>
+                    </v-btn>
+                </v-col>
+
+                <v-col justify="center" align="end" style="padding-bottom: 0px;">
+                    <v-menu
+                        open-on-hover
+                        bottom
+                        offset-y
+                        transition="slide-y-transition"
+                        rounded="lg"
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                :class="footer_theme" fab small dark
+                                v-bind="attrs" v-on="on"
+                            >
+                                <v-icon>mdi-translate</v-icon>
+                            </v-btn>
+                        </template>
+                        <v-list>
+                            <v-list-item
+                                v-for="(lang, i) in langs"
+                                :key="i"
+                                @click.stop="setCurrentLang(lang.lang)"
+                                :to="'/' + lang.lang + '/' + country"
+                                router exact
+                            >
+                                <v-list-item-title>{{ lang.name }}</v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                </v-col>
             </v-row>
         </v-container>
 
@@ -83,7 +107,7 @@
                                 v-for="(icon, i) in footer_icons"
                                 :key="i"
                                 class="mx-5" icon fab small
-                                :href="icon.href" target="_blank"
+                                :href="icon.href" target="_blank" rel="noopener"
                             >
                                 <v-icon size="30px">
                                     {{ icon.icon }}
@@ -112,29 +136,41 @@ export default {
             drawer: true,
             bgSrc: '',
             footer_theme: 'blue-grey darken-3',
+            lang: '',
+            country: '',
         }
     },
     computed: {
         pages(){
-            return this.$store.getters["getPages"]; 
+            this.$store.commit('addImgSrcsForCurrentLang')
+            return this.$store.getters.getPages
         },
         footer_icons(){
             return this.$store.getters.getFooterIcons
-        }
+        },
+        langs(){
+            return this.$store.getters.getLangs
+        },
     },
     created(){
-        this.$nuxt.$on('bgSrc-footerThm', ($event) => {
-            this.bgSrc = $event.bgSrc;
+        this.$nuxt.$on('getPageInfo', ($event) => {
+            this.bgSrc        = $event.bgSrc;
             this.footer_theme = $event.footerThm;
-        })
-        
+            this.lang         = $event.lang;
+            this.country      = $event.cntry;
+        });
         this.$vuetify.theme.dark = false;
-        
-        // this.$nuxt.$on('bg-path', ($event) => (this.bgSrc = $event));
-        // this.$nuxt.$on('footer-theme', ($event) => (this.footer_theme = $event));
+    },
+    mounted(){
+        this.setCurrentLang(this.lang);
+    },
+    methods: {
+        setCurrentLang (lang){
+            this.$store.commit('setCurrentLang', lang);
+        },
     },
     beforeDestroy(){
-        this.$nuxt.$off('bgSrc-footerThm')
+        this.$nuxt.$off('getPageInfo')
     }
 }
 </script>

@@ -14,8 +14,8 @@
                 It has been the largest building in Hungary since its completion.
                 The architectural style of the Hungarian parliament building was influenced by 
                 the gothic <b>Vienna City Hall</b>,
-                the <u>renaissance</u> elements like the cupola was influenced by the <u>Maria vom Siege church</u> in Vienna.
-                During the People's Republic of Hungary a red star perched on the top of the dome.
+                the <b>Renaissance</b> elements like the cupola was influenced by the <b>Maria vom Siege church</b> in Vienna.
+                During the People's Republic of Hungary a <u>red star</u> perched on the top of the dome.
             </p>
         </template>
 
@@ -43,7 +43,8 @@ export default{
                 imgNum: 21,
                 country: "Hungary",
                 title: "National Assembly of Hungary",
-                footerTheme: "pink darken-4"
+                footerTheme: "pink darken-4",
+                lang: 'en',
             }
         }
     }

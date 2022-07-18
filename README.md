@@ -1,6 +1,7 @@
 # Parliaments Exhibition
 
 ## <https://parler-arch-expo.netlify.app/>
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2292e585-01aa-42f6-81c6-8b7b848394a8/deploy-status)](https://app.netlify.com/sites/parler-arch-expo/deploys)
 ## By Adam Shakhbanov
 
 ## Build Setup

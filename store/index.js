@@ -6,52 +6,107 @@ const PageImgSrcs = {
     right: (country) => ('/' + country + '/0_Right.jpg'),
     flag:  (country) => ('/' + country + '/Flag.jpg'),
 };
-function addImgSrcs(item){
-    const country = item.to.slice(1);
+function addImgSrcs(item) {
+    const country = item.to.slice(4);
     item.icon = PageImgSrcs.icon(country);
     item.face = PageImgSrcs.face(country);
     item.min  = PageImgSrcs.min(country);
 }
 
 export const state = () => ({
-    Pages: [
-        {
-            icon: '', face: '', min:  '',
-            title: 'Russia',
-            name: 'State Duma & Federation Council',
-            to: '/Russia',
+    Pages: {
+        en: [
+            {
+                icon: '', face: '', min:  '',
+                title: 'Russia',
+                name: 'State Duma & Federation Council',
+                to: '/en/Russia',
+            },
+            {
+                icon: '', face: '', min:  '',
+                title: 'Germany',
+                name: 'Bundestag',
+                to: '/en/Germany'
+            },
+            {
+                icon: '', face: '', min:  '',
+                title: 'Belarus',
+                name: 'House of Represent. & Council of Republic',
+                to: '/en/Belarus'
+            },
+            {
+                icon: '', face: '', min:  '',
+                title: 'United Kingdom',
+                name: 'House of Commons & House of Lords',
+                to: '/en/UK'
+            },
+            {
+                icon: '', face: '', min:  '',
+                title: 'Hungary',
+                name: 'National Assembly',
+                to: '/en/Hungary'
+            },
+            {
+                icon: '', face: '', min:  '',
+                title: 'Moscow',
+                name: 'Moscow City Duma',
+                to: '/en/Moscow',
+            },
+        ],
+        ru: [
+            {
+                icon: '', face: '', min:  '',
+                title: 'Россия',
+                name: 'ГосДума и Совет Федерации',
+                to: '/ru/Russia',
+            },
+            {
+                icon: '', face: '', min:  '',
+                title: 'Германия',
+                name: 'Бундестаг',
+                to: '/ru/Germany'
+            },
+            {
+                icon: '', face: '', min:  '',
+                title: 'Беларусь',
+                name: 'Палата Представ. и Совет Республики',
+                to: '/ru/Belarus'
+            },
+            {
+                icon: '', face: '', min:  '',
+                title: 'Великобритания',
+                name: 'Палата Общин и Палата Лордов',
+                to: '/ru/UK'
+            },
+            {
+                icon: '', face: '', min:  '',
+                title: 'Венгрия',
+                name: 'Государственное Собрание',
+                to: '/ru/Hungary'
+            },
+            {
+                icon: '', face: '', min:  '',
+                title: 'Москва',
+                name: 'Московская Городская Дума',
+                to: '/ru/Moscow',
+            },
+        ],
+    },
+    WelcomeMessage: {
+        en: {
+            title: 'Welcome to Parler Square',
+            text:  'Here you can see Few of the Most Beautiful Parliamentary buildings in the World'
         },
-        {
-            icon: '', face: '', min:  '',
-            title: 'Germany',
-            name: 'Bundestag',
-            to: '/Germany'
-        },
-        {
-            icon: '', face: '', min:  '',
-            title: 'Belarus',
-            name: 'House of Represent. & Council of Republic',
-            to: '/Belarus'
-        },
-        {
-            icon: '', face: '', min:  '',
-            title: 'United Kingdom',
-            name: 'House of Commons & House of Lords',
-            to: '/UK'
-        },
-        {
-            icon: '', face: '', min:  '',
-            title: 'Hungary',
-            name: 'National Assembly',
-            to: '/Hungary'
-        },
-        {
-            icon: '', face: '', min:  '',
-            title: 'Moscow',
-            name: 'Moscow City Duma',
-            to: '/Moscow',
-        },
+        ru: {
+            title: 'Добро пожаловать на Parler Square',
+            text:  'Здесь вы можете увидеть Несколько Самых Красивых Парламентских зданий Мира'
+        }
+    },
+    Langs: [
+        {lang: 'en', name: 'English'}, 
+        {lang: 'ru', name: 'Русский'},
     ],
+    CurrentLang: 'en',
     FooterIcons: [
         {icon: 'mdi-github',  href: "https://github.com/AdamShakh/Parliaments_Exhibition"},
         {icon: 'mdi-vuetify', href: "https://vuetifyjs.com/"},
@@ -59,10 +114,10 @@ export const state = () => ({
         {icon: 'mdi-vuejs',   href: "https://vuejs.org/"},
     ],
 })
+
 export const getters = {
     getPages(state) {
-        state.Pages.forEach(addImgSrcs)
-        return state.Pages
+        return state.Pages[state.CurrentLang]
     },
     getFooterIcons(state) {
         return state.FooterIcons
@@ -70,9 +125,23 @@ export const getters = {
     getPageImgSrcs(state) {
         return PageImgSrcs
     },
+    getLangs(state){
+        return state.Langs
+    },
+    getCurrentLang(state){
+        return state.CurrentLang
+    },
+    getWelcomeMessage(state){
+        return state.WelcomeMessage[state.CurrentLang]
+    },
 }
-// export const mutations = {
-//     setPages(state, newPages) {
-//         state.Pages = newPages
-//     }
-// }
+export const mutations = {
+    addImgSrcsForCurrentLang(state){
+        state.Pages[state.CurrentLang].forEach(addImgSrcs)
+    },
+    setCurrentLang(state, lang){
+        if (state.Langs.filter(_lang => _lang.lang == lang).length) {
+            state.CurrentLang = lang;
+        }
+    },
+}

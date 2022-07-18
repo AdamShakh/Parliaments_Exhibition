@@ -2,12 +2,13 @@
 <div>
     <v-card light>
         <v-card-title class="headline" style="display: flex; justify-content: center;">
-            Welcome to Parler Square
+            {{ welcomeMessage.title }}
         </v-card-title>
         <v-card-text class="headline" justify="center" align="center" style="color: #616161">
-            Here you can see Few of the Most Beautiful Parliamentary buildings in the World
+            {{ welcomeMessage.text }}
         </v-card-text>
     </v-card>
+    
     <v-container
         class="lighten-5 mb-6"
     >
@@ -39,15 +40,20 @@
 
 <script>
 export default {
+    name: 'Index',
+    layout: 'index',
     computed: {
         pages(){
-            return this.$store.getters["getPages"]; 
+            this.$store.commit('addImgSrcsForCurrentLang')
+            return this.$store.getters.getPages
+        },
+        welcomeMessage(){
+            return this.$store.getters.getWelcomeMessage
         }
     },
-    layout: 'index',
     head() {
         const title = 'Parler Square'
         return { title }
-    } 
+    }
 }
 </script>

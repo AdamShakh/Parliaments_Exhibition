@@ -9,8 +9,8 @@
 
         <template v-slot:First>
             <p>
-                The Lower House of Parliament and the Cabinet of Ministers are located in the <b>Government building</b>
-                - one of the best monuments of <b>Soviet Constructivism</b>, which marked the beginning of the 
+                The Lower House of Parliament and the Cabinet of Ministers are located in the <b>Government building</b>, 
+                Minsk, Belarus. In one of the best monuments of <b>Soviet Constructivism</b>, which marked the beginning of the 
                 formation of a new city center.
                 It was built in 1934 and designed by Iosif Langbard. 
                 It stands behind a statue of Vladimir Lenin and is <u>one of the few buildings 
@@ -56,7 +56,8 @@ export default{
                 imgNum: 25,
                 country: "Belarus",
                 title: "National Assembly of Belarus",
-                footerTheme: "green darken-2"
+                footerTheme: "green darken-2",
+                lang: 'en',
             }
         }
     }
