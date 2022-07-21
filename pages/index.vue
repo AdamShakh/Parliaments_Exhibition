@@ -1,7 +1,7 @@
 <template>
-<div>
+<v-container id="index_page" light>
     <v-card light>
-        <v-card-title class="headline" style="display: flex; justify-content: center;">
+        <v-card-title class="headline" justify="center" align="center" style="display: flex; justify-content: center;">
             {{ welcomeMessage.title }}
         </v-card-title>
         <v-card-text class="headline" justify="center" align="center" style="color: #616161">
@@ -24,7 +24,7 @@
                     router
                     hover
                 >
-                    <v-img :lazy-src="page.min" :src="page.face" height="14em"></v-img>
+                    <v-img :lazy-src="page.min" :src="page.face" eager height="14em"></v-img>
                     <v-card-title class="headline">
                         {{ page.title }}
                     </v-card-title>
@@ -35,7 +35,7 @@
             </v-col>
         </v-row>
     </v-container>
-</div>
+</v-container>
 </template>
 
 <script>

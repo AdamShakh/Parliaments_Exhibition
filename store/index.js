@@ -113,6 +113,7 @@ export const state = () => ({
         {icon: 'mdi-nuxt',    href: "https://nuxtjs.org/"},
         {icon: 'mdi-vuejs',   href: "https://vuejs.org/"},
     ],
+    isMobile: false,
 })
 
 export const getters = {
@@ -134,6 +135,9 @@ export const getters = {
     getWelcomeMessage(state){
         return state.WelcomeMessage[state.CurrentLang]
     },
+    getIsMobile(state){
+        return state.isMobile
+    },
 }
 export const mutations = {
     addImgSrcsForCurrentLang(state){
@@ -143,5 +147,8 @@ export const mutations = {
         if (state.Langs.filter(_lang => _lang.lang == lang).length) {
             state.CurrentLang = lang;
         }
+    },
+    setIsMobile(state, isIt){
+        state.isMobile = isIt;
     },
 }

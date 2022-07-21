@@ -1,7 +1,7 @@
 <template>
 <v-app>
     
-    <v-img :src="bgSrc" style="position: fixed; background-size:cover; width: 100%; height: 100%;">
+    <v-img :src="bgSrc" eager style="position: fixed; background-size:cover; width: 100%; height: 100%;">
     </v-img>
 
     <v-navigation-drawer
@@ -19,8 +19,7 @@
             <v-list-item
                 class="menu-item"
                 to="/"
-                router
-                exact
+                router exact
             >
                 <v-list-item-avatar width="3em" height="3em">
                     <v-icon size="52px">mdi-home</v-icon>
@@ -42,19 +41,19 @@
                 </v-list-item-avatar>
                 
                 <v-list-item-content>
-                    <v-list-item-title v-text="page.title" />
+                    <v-list-item-title>{{ page.title }}</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
         </v-list>
     </v-navigation-drawer>
 
-    <v-main light class="back-lowbright">
+    <v-main light class="back-lowbright" app>
 
         <v-container id="menu_toggle-lang_menu" style="padding-bottom: 0px;">
             <v-row justify="center" align="center">
                 <v-col justify="start" align="start" style="padding-bottom: 0px;">
                     <v-btn
-                        :class="footer_theme" fab small dark
+                        :class="footerTheme" fab small dark
                         @click.stop="drawer = !drawer"
                     >
                         <v-icon>mdi-menu</v-icon>
@@ -62,6 +61,10 @@
                 </v-col>
 
                 <v-col justify="center" align="end" style="padding-bottom: 0px;">
+                    <v-btn
+                        :class="footerTheme" fab small dark
+                        loading v-if="!isMount">
+                    </v-btn>
                     <v-menu
                         open-on-hover
                         bottom
@@ -71,7 +74,7 @@
                     >
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn
-                                :class="footer_theme" fab small dark
+                                :class="footerTheme" fab small dark
                                 v-bind="attrs" v-on="on"
                             >
                                 <v-icon>mdi-translate</v-icon>
@@ -97,19 +100,19 @@
         
         <v-container id="footer" style="max-height: 100%; max-width: 100%">
             <v-row justify="center" align="center">
-                <v-col cols="5" justify="center" align="center">
-                    <v-card :class="footer_theme" dark>
+                <v-col :cols="!isMobile ? 5 : 10" justify="center" align="center">
+                    <v-card :class="footerTheme" dark>
                         <v-card-text>
                             <v-btn v-if="!drawer" class="mx-5" icon fab small router to="/">
-                                <v-icon size="30px">mdi-home</v-icon>
+                                <v-icon size="33px">mdi-home</v-icon>
                             </v-btn>
                             <v-btn
-                                v-for="(icon, i) in footer_icons"
+                                v-for="(icon, i) in footerIcons"
                                 :key="i"
                                 class="mx-5" icon fab small
                                 :href="icon.href" target="_blank" rel="noopener"
                             >
-                                <v-icon size="30px">
+                                <v-icon size="33px">
                                     {{ icon.icon }}
                                 </v-icon>
                             </v-btn>
@@ -135,9 +138,10 @@ export default {
         return {
             drawer: true,
             bgSrc: '',
-            footer_theme: 'blue-grey darken-3',
+            footerTheme: 'blue-grey darken-3',
             lang: '',
             country: '',
+            isMount: false,
         }
     },
     computed: {
@@ -145,24 +149,31 @@ export default {
             this.$store.commit('addImgSrcsForCurrentLang')
             return this.$store.getters.getPages
         },
-        footer_icons(){
+        footerIcons(){
             return this.$store.getters.getFooterIcons
         },
         langs(){
             return this.$store.getters.getLangs
         },
+        isMobile(){
+            return this.$store.getters.getIsMobile
+        },
     },
     created(){
         this.$nuxt.$on('getPageInfo', ($event) => {
             this.bgSrc        = $event.bgSrc;
-            this.footer_theme = $event.footerThm;
+            this.footerTheme  = $event.footerThm;
             this.lang         = $event.lang;
-            this.country      = $event.cntry;
+            this.country      = $event.country;
         });
         this.$vuetify.theme.dark = false;
+        // if (process.client) {
+        //     if (window.innerWidth < 880) {this.drawer = false}
+        // }
     },
     mounted(){
         this.setCurrentLang(this.lang);
+        this.isMount = true;
     },
     methods: {
         setCurrentLang (lang){
@@ -183,5 +194,5 @@ export default {
 .back-lowbright{
     backdrop-filter: brightness(60%) !important;
 }
-/* https://vuetifyjs.com/en/styles/colors/#material-colors - for footer_theme */
+/* https://vuetifyjs.com/en/styles/colors/#material-colors - for footerTheme */
 </style>
