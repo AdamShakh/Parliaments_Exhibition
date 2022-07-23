@@ -66,7 +66,7 @@
                                         class="mx-5" icon fab small 
                                         v-bind="attrs" v-on="on"
                                     >
-                                        <v-icon size="32px">mdi-translate</v-icon>
+                                        <v-icon size="30px">mdi-translate</v-icon>
                                     </v-btn>
                                 </template>
                                 <v-list>
@@ -131,6 +131,9 @@ export default {
             if (window.innerWidth < 1030){
                 this.isMobile = true
             }
+            else if (window.innerWidth > 1263 && window.innerWidth < 1315){
+                this.isMobile = true
+            }
             else if (window.innerWidth > 1030){
                 this.isMobile = false
             }
@@ -140,6 +143,12 @@ export default {
         this.isMount = true;
         this.adaptiveSize();
         window.addEventListener('resize', this.adaptiveSize, { passive: true });
+        this.$store.commit('setIsMobile', this.isMobile);
+    },
+    watch: {
+        isMobile(isIt){
+            this.$store.commit('setIsMobile', isIt);
+        },
     },
     beforeDestroy() {
         if (typeof window === 'undefined') return

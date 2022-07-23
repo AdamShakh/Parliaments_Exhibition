@@ -43,7 +43,7 @@ export default{
                 imgNum: 21,
                 country: "Hungary",
                 title: "Государственное Собрание Венгрии",
-                footerTheme: "pink darken-4",
+                pageTheme: "pink darken-4",
                 lang: 'ru',
             }
         }

@@ -73,7 +73,7 @@
         </v-row>
         <!-- === -->
         
-        <v-card light style="margin-bottom: 25px;">
+        <v-card light style="margin-bottom: 35px;">
             <v-carousel
                 :height="carouselHeight"
                 cycle
@@ -82,24 +82,24 @@
                 hide-delimiter-background
                 :hide-delimiters="isMobile"
                 progress
-                :progress-color="footerTheme"
+                :progress-color="pageTheme"
             >
                 <template v-slot:prev="{ on, attrs }">
                     <v-btn
-                        height="45" width="45"
-                        :class="footerTheme" icon
-                        style="opacity: 0.8"
+                        height="50" width="50"
+                        :class="pageTheme" icon
+                        :style="!isMobile ? 'opacity: 1' : 'opacity: 0.8'"
                         v-bind="attrs" v-on="on">
-                        <v-icon size="45px">mdi-chevron-left</v-icon>
+                        <v-icon size="50px">mdi-chevron-left</v-icon>
                     </v-btn>
                 </template>
                 <template v-slot:next="{ on, attrs }">
                     <v-btn
-                        height="45" width="45"
-                        :class="footerTheme" icon
-                        style="opacity: 0.8"
+                        height="50" width="50"
+                        :class="pageTheme" icon
+                        :style="!isMobile ? 'opacity: 1' : 'opacity: 0.8'"
                         v-bind="attrs" v-on="on">
-                        <v-icon size="45px">mdi-chevron-right</v-icon>
+                        <v-icon size="50px">mdi-chevron-right</v-icon>
                     </v-btn>
                 </template>
                 <v-carousel-item
@@ -110,10 +110,11 @@
                     <v-sheet
                         height="100%"
                         tile
+                        :style="i != imgNum ? '' : 'margin-left: 30%; margin-right: 30%'"
                     >
                         <v-row
                             class="fill-height"
-                            justify="center" align="center"
+                            justify="center" :align="(isMobile && i==imgNum) ? 'end' : 'center'"
                         >
                             <v-img :src="image" eager></v-img> 
                         </v-row>
@@ -128,7 +129,7 @@
 <script>
 export default {
     name: 'PageTemplate',
-    props: {   
+    props: {
         title: {
             type: String, required: true
         },
@@ -138,7 +139,7 @@ export default {
         imgNum: {
             type: Number, required: true
         },
-        footerTheme: {
+        pageTheme: {
             type: String, required: true
         },
         lang: {
@@ -164,18 +165,22 @@ export default {
         flagSrc(){
             return this._imgSrcs.flag(this.country)
         },
+        coatSrc(){
+            return this._imgSrcs.coat(this.country)
+        },
         imagesSrc(){
             let images = []
             for (let i=1; i <= this.imgNum; i++) {
                 images.push('/' + this.country + '/' + i + '.jpg')
             }
+            images.push(this.coatSrc)
             return images
         },
     },
     created() {
         this.$nuxt.$emit('getPageInfo', {
             bgSrc:     this.flagSrc, 
-            footerThm: this.footerTheme,
+            pageTheme: this.pageTheme,
             lang:      this.lang,
             country:   this.country,
         });

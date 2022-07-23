@@ -55,7 +55,7 @@ export default{
                 imgNum: 24,
                 country: "Russia",
                 title: "Federal Assembly of Russia",
-                footerTheme: "indigo darken-2",
+                pageTheme: "indigo darken-2",
                 lang: 'en',
             }
         }

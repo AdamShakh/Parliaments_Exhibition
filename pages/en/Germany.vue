@@ -58,7 +58,7 @@ export default{
                 imgNum: 25,
                 country: "Germany",
                 title: "Bundestag of Germany",
-                footerTheme: "red darken-3",
+                pageTheme: "red darken-3",
                 lang: 'en',
             }
         }

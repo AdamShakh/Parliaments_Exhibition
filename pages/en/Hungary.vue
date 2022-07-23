@@ -43,7 +43,7 @@ export default{
                 imgNum: 21,
                 country: "Hungary",
                 title: "National Assembly of Hungary",
-                footerTheme: "pink darken-4",
+                pageTheme: "pink darken-4",
                 lang: 'en',
             }
         }

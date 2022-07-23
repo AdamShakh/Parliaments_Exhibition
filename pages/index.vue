@@ -2,7 +2,7 @@
 <v-container id="index_page" light>
     <v-card light>
         <v-card-title class="headline" justify="center" align="center" style="display: flex; justify-content: center;">
-            {{ welcomeMessage.title }}
+            {{ welcomeMessage.title }} <label>&nbsp;<span>Parler Square</span></label>
         </v-card-title>
         <v-card-text class="headline" justify="center" align="center" style="color: #616161">
             {{ welcomeMessage.text }}

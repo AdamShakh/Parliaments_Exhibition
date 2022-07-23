@@ -8,12 +8,14 @@
         </template>
 
         <template v-slot:First>
-            Parliament occupying Palace of Westminster.
-            It's lies on the north bank of the River Thames in the City of Westminster.
-            Its name, which derives from the neighbouring Westminster Abbey, 
-            may refer to several historic structures but most often: the Old Palace, 
-            a medieval building-complex largely destroyed by fire in 1834, or its replacement, 
-            the New Palace that stands today.
+            <p>
+                Parliament occupying Palace of Westminster.
+                It's lies on the north bank of the River Thames in the City of Westminster.
+                Its name, which derives from the neighbouring Westminster Abbey, 
+                may refer to several historic structures but most often: the Old Palace, 
+                a medieval building-complex largely destroyed by fire in 1834, or its replacement, 
+                the New Palace that stands today.
+            </p>
         </template>
 
         <template v-slot:Second>
@@ -51,7 +53,7 @@ export default{
                 imgNum: 17,
                 country: "UK",
                 title: "Parliament of the United Kingdom",
-                footerTheme: "indigo darken-1",
+                pageTheme: "indigo darken-1",
                 lang: 'en',
             }
         }

@@ -58,7 +58,7 @@ export default{
                 imgNum: 25,
                 country: "Germany",
                 title: "Бундестаг Германии",
-                footerTheme: "red darken-3",
+                pageTheme: "red darken-3",
                 lang: 'ru',
             }
         }

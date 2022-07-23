@@ -5,6 +5,7 @@ const PageImgSrcs = {
     left:  (country) => ('/' + country + '/0_Left.jpg'),
     right: (country) => ('/' + country + '/0_Right.jpg'),
     flag:  (country) => ('/' + country + '/Flag.jpg'),
+    coat:  (country) => ('/' + country + '/Coat.png'),
 };
 function addImgSrcs(item) {
     const country = item.to.slice(4);
@@ -94,11 +95,11 @@ export const state = () => ({
     },
     WelcomeMessage: {
         en: {
-            title: 'Welcome to Parler Square',
+            title: 'Welcome to',
             text:  'Here you can see Few of the Most Beautiful Parliamentary buildings in the World'
         },
         ru: {
-            title: 'Добро пожаловать на Parler Square',
+            title: 'Добро пожаловать на',
             text:  'Здесь вы можете увидеть Несколько Самых Красивых Парламентских зданий Мира'
         }
     },

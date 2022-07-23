@@ -53,19 +53,21 @@
             <v-row justify="center" align="center">
                 <v-col justify="start" align="start" style="padding-bottom: 0px;">
                     <v-btn
-                        :class="footerTheme" fab small dark
+                        :class="pageTheme" fab small dark
                         @click.stop="drawer = !drawer"
                     >
-                        <v-icon>mdi-menu</v-icon>
+                        <v-icon v-if="!drawer">mdi-menu</v-icon>
+                        <v-icon v-if="drawer">mdi-menu-open</v-icon>
                     </v-btn>
                 </v-col>
 
                 <v-col justify="center" align="end" style="padding-bottom: 0px;">
                     <v-btn
-                        :class="footerTheme" fab small dark
+                        :class="pageTheme" fab small dark
                         loading v-if="!isMount">
                     </v-btn>
                     <v-menu
+                        v-if="country!=''"
                         open-on-hover
                         bottom
                         offset-y
@@ -74,7 +76,7 @@
                     >
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn
-                                :class="footerTheme" fab small dark
+                                :class="pageTheme" fab small dark
                                 v-bind="attrs" v-on="on"
                             >
                                 <v-icon>mdi-translate</v-icon>
@@ -101,7 +103,7 @@
         <v-container id="footer" style="max-height: 100%; max-width: 100%">
             <v-row justify="center" align="center">
                 <v-col :cols="!isMobile ? 5 : 10" justify="center" align="center">
-                    <v-card :class="footerTheme" dark>
+                    <v-card :class="pageTheme" dark>
                         <v-card-text>
                             <v-btn v-if="!drawer" class="mx-5" icon fab small router to="/">
                                 <v-icon size="33px">mdi-home</v-icon>
@@ -138,7 +140,7 @@ export default {
         return {
             drawer: true,
             bgSrc: '',
-            footerTheme: 'blue-grey darken-3',
+            pageTheme: 'blue-grey darken-3',
             lang: '',
             country: '',
             isMount: false,
@@ -161,15 +163,14 @@ export default {
     },
     created(){
         this.$nuxt.$on('getPageInfo', ($event) => {
-            this.bgSrc        = $event.bgSrc;
-            this.footerTheme  = $event.footerThm;
-            this.lang         = $event.lang;
-            this.country      = $event.country;
+            this.bgSrc     = $event.bgSrc;
+            this.pageTheme = $event.pageTheme;
+            this.lang      = $event.lang;
+            this.country   = $event.country;
         });
         this.$vuetify.theme.dark = false;
-        // if (process.client) {
-        //     if (window.innerWidth < 880) {this.drawer = false}
-        // }
+
+        if (this.isMobile) { this.drawer = false }
     },
     mounted(){
         this.setCurrentLang(this.lang);
@@ -194,5 +195,5 @@ export default {
 .back-lowbright{
     backdrop-filter: brightness(60%) !important;
 }
-/* https://vuetifyjs.com/en/styles/colors/#material-colors - for footerTheme */
+/* https://vuetifyjs.com/en/styles/colors/#material-colors - for pageTheme */
 </style>

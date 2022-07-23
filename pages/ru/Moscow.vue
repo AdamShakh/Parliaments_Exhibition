@@ -49,7 +49,7 @@ export default{
                 imgNum: 17,
                 country: "Moscow",
                 title: "МосГорДума",
-                footerTheme: "red darken-2",
+                pageTheme: "red darken-2",
                 lang: 'ru',
             }
         }

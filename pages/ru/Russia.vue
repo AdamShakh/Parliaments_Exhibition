@@ -54,7 +54,7 @@ export default{
                 imgNum: 24,
                 country: "Russia",
                 title: "Федеральное Собрание России",
-                footerTheme: "indigo darken-2",
+                pageTheme: "indigo darken-2",
                 lang: 'ru',
             }
         }

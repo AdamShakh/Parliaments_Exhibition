@@ -56,7 +56,7 @@ export default{
                 imgNum: 25,
                 country: "Belarus",
                 title: "Национальное Собрание Беларуси",
-                footerTheme: "green darken-2",
+                pageTheme: "green darken-2",
                 lang: 'ru',
             }
         }
