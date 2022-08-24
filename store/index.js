@@ -93,14 +93,20 @@ export const state = () => ({
             },
         ],
     },
-    WelcomeMessage: {
+    Messages: {
         en: {
-            title: 'Welcome to',
-            text:  'Here you can see Few of the Most Beautiful Parliamentary buildings in the World'
+            indexTitle: 'Welcome to',
+            indexText:  'Here you can see Few of the Most Beautiful Parliamentary buildings in the World',
+            contextEnlarge:  'Enlarge',
+            contextOriginal: 'Open the Original',
+            contextDownload: 'Download',
         },
         ru: {
-            title: 'Добро пожаловать на',
-            text:  'Здесь вы можете увидеть Несколько Самых Красивых Парламентских зданий Мира'
+            indexTitle: 'Добро пожаловать на',
+            indexText:  'Здесь вы можете увидеть Несколько Самых Красивых Парламентских зданий Мира',
+            contextEnlarge:  'Увеличить',
+            contextOriginal: 'Открыть Оригинал',
+            contextDownload: 'Скачать',
         }
     },
     Langs: [
@@ -133,11 +139,21 @@ export const getters = {
     getCurrentLang(state){
         return state.CurrentLang
     },
-    getWelcomeMessage(state){
-        return state.WelcomeMessage[state.CurrentLang]
-    },
     getIsMobile(state){
         return state.isMobile
+    },
+    getWelcomeMessage(state){
+        return {
+            title: state.Messages[state.CurrentLang].indexTitle,
+            text: state.Messages[state.CurrentLang].indexText,
+        }
+    },
+    getContextMenuMessages(state){
+        return {
+            enlarge:  state.Messages[state.CurrentLang].contextEnlarge,
+            original: state.Messages[state.CurrentLang].contextOriginal,
+            download: state.Messages[state.CurrentLang].contextDownload
+        }
     },
 }
 export const mutations = {

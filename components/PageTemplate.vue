@@ -7,7 +7,9 @@
                     <v-img
                         :lazy-src="faceMinSrc" 
                         :src="faceSrc"
-                        eager>
+                        eager
+                        @contextmenu="showContext(faceSrc)"
+                    >
                     </v-img>
                     <div align="center" style="font-size: 1.3em; padding: 10px;">
                         <slot name="Face"></slot>
@@ -21,7 +23,7 @@
         <v-card v-if="!isMobile" light style="margin-bottom: 35px;">
             <v-row justify="center" align="center">
                 <v-col cols="6" justify="start" align="center">
-                    <v-card><v-img :src="leftSrc" eager></v-img></v-card>
+                    <v-card><v-img :src="leftSrc" eager @contextmenu="showContext(leftSrc)"></v-img></v-card>
                 </v-col>
                 <v-col cols="6" justify="end" align="start">
                     <div style="margin-right: 20px; margin-top: 16px; font-size: 1.09em;" align="justify">
@@ -34,7 +36,7 @@
         <v-row v-if="isMobile" justify="center" align="center" style="margin-bottom: 18px;">
             <v-col cols="12" justify="center" align="center" style="padding-top: 0%; padding-bottom: 0%;">
                 <v-card light :width="mobileWidth">
-                    <v-img :src="leftSrc" eager></v-img>
+                    <v-img :src="leftSrc" eager @contextmenu="showContext(leftSrc)"></v-img>
                     <div align="justify" 
                         :style="(mobileWidth=='100%') ? 'margin: 12px' : 'margin: 15px'" 
                         style="padding-bottom: 1px; font-size: 1.09em;">
@@ -54,7 +56,7 @@
                     </div>
                 </v-col>
                 <v-col cols="6" justify="end" align="center">
-                    <v-card><v-img :src="rightSrc" eager></v-img></v-card>
+                    <v-card><v-img :src="rightSrc" eager @contextmenu="showContext(rightSrc)"></v-img></v-card>
                 </v-col>
             </v-row>
         </v-card>
@@ -62,7 +64,7 @@
         <v-row v-if="isMobile" justify="center" align="center" style="margin-bottom: 20px;">
             <v-col cols="12" justify="center" align="center" style="padding-top: 0%; padding-bottom: 0%;">
                 <v-card light :width="mobileWidth">
-                    <v-img :src="rightSrc" eager></v-img>
+                    <v-img :src="rightSrc" eager @contextmenu="showContext(rightSrc)"></v-img>
                     <div align="justify" 
                         :style="(mobileWidth=='100%') ? 'margin: 12px' : 'margin: 15px'" 
                         style="padding-bottom: 1px; font-size: 1.09em;">
@@ -116,13 +118,55 @@
                             class="fill-height"
                             justify="center" :align="(isMobile && i==imgNum) ? 'end' : 'center'"
                         >
-                            <v-img :src="image" eager></v-img> 
+                            <v-img :src="image" eager @contextmenu="showContext(image, true)"></v-img> 
                         </v-row>
                     </v-sheet>
                 </v-carousel-item>
             </v-carousel>
         </v-card>
+
+        <v-menu
+            v-model="showMenu"
+            :position-x="x"
+            :position-y="y"
+            absolute
+            offset-y
+            transition="slide-y-transition"
+            rounded="lg"
+        >
+            <v-list>
+                <v-list-item @click.stop="showDialog=true; showMenu=false">
+                    <v-icon style="margin-right: 10px">mdi-magnify-plus-outline</v-icon>
+                    <v-list-item-title>{{ contextMenuMessages.enlarge }}</v-list-item-title>
+                </v-list-item>
+                <v-list-item @click.stop="openOriginalImg">
+                    <v-icon style="margin-right: 10px">mdi-file-image</v-icon>
+                    <v-list-item-title>{{ contextMenuMessages.original }}</v-list-item-title>
+                </v-list-item>
+                <v-list-item @click.stop="downloadImg">
+                    <v-icon style="margin-right: 10px">mdi-download</v-icon>
+                    <v-list-item-title>{{ contextMenuMessages.download }}</v-list-item-title>
+                </v-list-item>
+            </v-list>
+        </v-menu>
         
+        <v-dialog
+            v-model="showDialog"
+            max-width="70%"
+            overlay-opacity="0.6"
+            :fullscreen="dialogFullScreen"
+        >
+            <v-card @click="showDialog=false" v-ripple="false">
+                <v-toolbar
+                    dark :color="pageTheme"
+                    v-if="dialogFullScreen"
+                ></v-toolbar>
+                <v-img :src="contextSrc"></v-img>
+            </v-card>
+        </v-dialog>
+        <a id="openOriginalImg" href="#" target="_blank" style="display:none"></a>
+        <a id="downloadImg" href="#" download style="display:none"></a>
+
     </v-container>
 </template>
 
@@ -130,21 +174,11 @@
 export default {
     name: 'PageTemplate',
     props: {
-        title: {
-            type: String, required: true
-        },
-        country: {
-            type: String, required: true
-        },
-        imgNum: {
-            type: Number, required: true
-        },
-        pageTheme: {
-            type: String, required: true
-        },
-        lang: {
-            type: String, required: true
-        },
+        title:     { type: String, required: true },
+        country:   { type: String, required: true },
+        imgNum:    { type: Number, required: true },
+        pageTheme: { type: String, required: true },
+        lang:      { type: String, required: true },
     },
     computed: {
         _imgSrcs(){
@@ -176,6 +210,9 @@ export default {
             images.push(this.coatSrc)
             return images
         },
+        contextMenuMessages(){
+            return this.$store.getters.getContextMenuMessages
+        },
     },
     created() {
         this.$nuxt.$emit('getPageInfo', {
@@ -185,7 +222,10 @@ export default {
             country:   this.country,
         });
     },
-    data: () => ({ isMobile: false, mobileWidth: '', carouselHeight: 640, }),
+    data: () => ({ 
+        isMobile: false, mobileWidth: '', carouselHeight: 640,
+        contextSrc: '', showMenu: false, x: 0, y: 0, showDialog: false, dialogFullScreen: false,
+    }),
     methods: {
         adaptiveSize() {
             if (window.innerWidth < 520){
@@ -210,6 +250,26 @@ export default {
                 this.isMobile = false
                 this.carouselHeight = 640
             }
+        },
+        showContext(src, fullScrn = (!this.isMobile) ? false : true) {
+            let e = window.event
+            e.preventDefault()
+            this.showMenu = false
+            this.x = e.clientX
+            this.y = e.clientY
+            this.showMenu = true
+            this.contextSrc = src
+            this.dialogFullScreen = fullScrn
+        },
+        openOriginalImg() {
+            this.showMenu = false
+            document.getElementById('openOriginalImg').href = this.contextSrc
+            document.getElementById('openOriginalImg').click()
+        },
+        downloadImg() {
+            this.showMenu = false
+            document.getElementById('downloadImg').href = this.contextSrc
+            document.getElementById('downloadImg').click()
         },
     },
     mounted() {
